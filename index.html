@@ -21,7 +21,6 @@
     /* ── NAV ── */
     .nav{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;background:var(--cream);border-bottom:2px solid var(--card-border);position:sticky;top:0;z-index:100;}
     .logo-area{display:flex;align-items:center;gap:12px;}
-    /* LOGO IMAGE PLACEHOLDER — replace the div below with <img src="your-logo.png"> */
     .logo-img-placeholder{width:52px;height:52px;border-radius:12px;background:#F0C8C0;border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mid-brown);text-align:center;line-height:1.3;padding:4px;cursor:pointer;flex-shrink:0;}
     .logo-text{display:flex;flex-direction:column;}
     .logo-name{font-size:17px;font-weight:bold;color:var(--dk-brown);letter-spacing:.3px;}
@@ -68,13 +67,33 @@
     /* ── MENU CARD ── */
     .menu-card{background:#FFF;border:2px solid var(--card-border);border-radius:16px;overflow:hidden;transition:transform .18s,border-color .15s;}
     .menu-card:hover{transform:translateY(-4px);border-color:var(--pink);}
-    /* THUMBNAIL AREA — each card has a colored background + placeholder image slot */
-    .menu-thumb{width:100%;height:110px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
-    .menu-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-    /* Fallback shown when no real image is provided */
-    .menu-thumb-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
-    .thumb-emoji{font-size:38px;line-height:1;}
-    .thumb-label{font-size:9px;color:rgba(0,0,0,.35);text-transform:uppercase;letter-spacing:.5px;}
+
+    /* ── THUMBNAIL ──
+       Images live in an Items/ folder next to this HTML file.
+       File name = item name exactly as written + .jpg
+       Example: Items/Plain Tea Cake.jpg
+    */
+    .menu-thumb{width:100%;height:110px;overflow:hidden;background:#F0C8C0;}
+    .menu-thumb img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+    /* Shown when the image file is missing */
+    .menu-thumb-fallback{
+      width:100%;
+      height:100%;
+      display:none;          /* hidden by default; JS shows it on error */
+      align-items:center;
+      justify-content:center;
+      background:#F0C8C0;
+      font-size:11px;
+      color:var(--mid-brown);
+      text-align:center;
+      padding:8px;
+    }
+
     .menu-card-body{padding:12px 14px 14px;}
     .menu-name{font-size:13px;font-weight:bold;color:var(--dk-brown);line-height:1.35;}
     .menu-unit{font-size:11px;color:var(--mid-brown);margin:2px 0;}
@@ -157,7 +176,6 @@
     /* ── RECEIPT ── */
     .receipt{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;width:440px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
     .receipt-header{text-align:center;margin-bottom:18px;border-bottom:2px dashed var(--card-border);padding-bottom:16px;}
-    /* RECEIPT LOGO PLACEHOLDER */
     .receipt-logo-img{width:56px;height:56px;border-radius:12px;background:#F0C8C0;border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--mid-brown);text-align:center;margin:0 auto 8px;line-height:1.3;}
     .receipt-logo{font-size:20px;font-weight:bold;color:var(--dk-brown);}
     .receipt-logo span{color:var(--pink);}
@@ -225,7 +243,7 @@
 
 <!-- ── DELIVERY BAR ── -->
 <div class="delivery-bar">
-  🚴 <strong>Free delivery within 3 km</strong> &nbsp;·&nbsp; <span>Delivery charges apply beyond 3 km — ask us on WhatsApp</span>
+  🚴 <strong>Delivery available</strong> &nbsp;·&nbsp; <span>Charges apply based on distance — confirm on WhatsApp before ordering</span>
 </div>
 
 <!-- ── HERO ── -->
@@ -266,7 +284,7 @@
   <div class="location-card">
     <div class="loc-row">📍 <span>Saddar, Rawalpindi, Punjab — walk-ins welcome</span></div>
     <div class="loc-row">🕐 <span>Mon–Sat: 7:30 am – 8:00 pm &nbsp;|&nbsp; Sun: 8:00 am – 2:00 pm</span></div>
-    <div class="loc-row">🚴 <span>Free delivery within 3 km · charges apply beyond</span></div>
+    <div class="loc-row">🚴 <span>Delivery available · charges based on distance</span></div>
     <div class="loc-row">💬 <span>+92 300 0000000</span></div>
     <div class="loc-row">✉️ <span>hello@crunchicbakinglab.pk</span></div>
   </div>
@@ -295,7 +313,7 @@
       <span>Subtotal</span>
       <span id="cart-total-display">Rs 0</span>
     </div>
-    <div class="cart-delivery-note">🚴 Free delivery within 3 km · charges apply beyond 3 km</div>
+    <div class="cart-delivery-note">🚴 Delivery charges based on distance — confirm on WhatsApp</div>
     <button class="checkout-btn" id="checkout-btn" onclick="openCheckout()" disabled>Checkout →</button>
   </div>
 </div>
@@ -323,8 +341,8 @@
       <label>Delivery address *</label>
       <input type="text" id="c-address" placeholder="e.g. House 5, Street 3, Saddar, Rawalpindi">
     </div>
-    <div class="delivery-info-box">
-      🚴 <strong>Delivery Policy:</strong> Free within 3 km of our bakery in Saddar, Rawalpindi. Delivery charges apply beyond 3 km — our team will confirm the exact charge on WhatsApp after you place the order.
+    <div class="delivery-info-box" id="delivery-info-box" style="display:none;">
+      🚴 <strong>Delivery charges</strong> are calculated by distance from our bakery in Saddar, Rawalpindi. Our team will confirm the exact charge on WhatsApp after you place the order.
     </div>
     <div class="modal-field">
       <label>Special requests (optional)</label>
@@ -376,7 +394,7 @@
         <span id="r-subtotal"></span>
       </div>
       <div class="receipt-delivery-row" id="r-delivery-row">
-        <span>Delivery</span>
+        <span>Delivery charges</span>
         <span id="r-delivery-cost"></span>
       </div>
       <div class="receipt-delivery-note" id="r-delivery-note"></div>
@@ -394,7 +412,7 @@
 
     <div class="receipt-footer">
       Thank you for your order! 🤎<br>
-      We'll confirm on WhatsApp shortly.<br>
+      We'll confirm delivery charges and dispatch time on WhatsApp shortly.<br>
       <strong>Crunchic Baking Lab, Rawalpindi</strong>
     </div>
 
@@ -414,60 +432,69 @@
   // ── CHANGE THIS TO YOUR WHATSAPP NUMBER (country code, no + or spaces) ──
   const WHATSAPP_NUMBER = '923378637801';
 
-  // ─────────────────────────────────────────────────────────────────
+  // ==========================================================================
   // MENU DATA
-  // Each item has: name, price, unit, emoji (fallback), cat, bg (card bg colour)
   //
-  // HOW TO ADD YOUR OWN THUMBNAIL IMAGES:
-  // 1. Add an "img" property to any item, e.g.: img: 'images/chocolate-cake.jpg'
-  // 2. Put the image file next to the HTML file (or use a URL)
-  // 3. The card will show your photo instead of the emoji placeholder.
-  // ─────────────────────────────────────────────────────────────────
+  // HOW IMAGES WORK:
+  //   Put your photos in a folder called "Items" next to this HTML file.
+  //   Name each photo exactly like the item name + .jpg
+  //   Example:  Items/Plain Tea Cake.jpg
+  //             Items/Double Chocolate Cake.jpg
+  //             Items/Brownie Sundae.jpg   ... etc.
+  //
+  //   The page will automatically load them. If a photo is missing, it shows
+  //   a plain coloured block as a placeholder — no broken icon, no text.
+  //
+  //   You can also use .png or .webp — just change the extension in THUMB_EXT below.
+  // ==========================================================================
+  const THUMB_EXT = '.jpg'; // change to '.png' or '.webp' if needed
+  const ITEMS_FOLDER = 'Items/';
+
   const menuItems = [
     // CAKES
-    { name:'Plain Tea Cake',            price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
-    { name:'Almond Cake',               price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
-    { name:'Mixed Dry Fruit Cake',      price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
-    { name:'Plain Chocolate Cake',      price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
-    { name:'Double Chocolate Cake',     price:1600, unit:'2 Pound Cake', emoji:'🍫', cat:'cakes',     bg:'#F5E0D0' },
-    { name:'Matilda Cake',              price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
-    { name:'Three Milk (Tres Leches)',  price:1600, unit:'2 Pound Cake', emoji:'🍮', cat:'cakes',     bg:'#FFF0DC' },
-    { name:'Coffee Cake',               price:1600, unit:'2 Pound Cake', emoji:'☕', cat:'cakes',     bg:'#F0E4D0' },
-    { name:'Oreo Cake',                 price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#E8E8F0' },
-    { name:'Red Velvet Cake',           price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FFE0E0' },
-    { name:'White Chocolate Cake',      price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FFF8F0' },
+    { name:'Plain Tea Cake',            price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FDE8E0' },
+    { name:'Almond Cake',               price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FDE8E0' },
+    { name:'Mixed Dry Fruit Cake',      price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FDE8E0' },
+    { name:'Plain Chocolate Cake',      price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FDE8E0' },
+    { name:'Double Chocolate Cake',     price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#F5E0D0' },
+    { name:'Matilda Cake',              price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FDE8E0' },
+    { name:'Three Milk (Tres Leches)',  price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FFF0DC' },
+    { name:'Coffee Cake',               price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#F0E4D0' },
+    { name:'Oreo Cake',                 price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#E8E8F0' },
+    { name:'Red Velvet Cake',           price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FFE0E0' },
+    { name:'White Chocolate Cake',      price:1600, unit:'2 Pound Cake', cat:'cakes',    bg:'#FFF8F0' },
     // DESSERTS
-    { name:'Brownie Sundae',            price:300,  unit:'Each',         emoji:'🍨', cat:'desserts',  bg:'#F5E8D0' },
-    { name:'Crunchic Brownie',          price:300,  unit:'Each',         emoji:'🍫', cat:'desserts',  bg:'#F5E0C8' },
-    { name:'Whipped Pineapple Delight', price:300,  unit:'Each',         emoji:'🍍', cat:'desserts',  bg:'#FFF8D0' },
-    { name:'Oreo Sundae',               price:300,  unit:'Each',         emoji:'🍨', cat:'desserts',  bg:'#E8E8F0' },
-    { name:'Dairy Milk Sundae',         price:300,  unit:'Each',         emoji:'🍦', cat:'desserts',  bg:'#FDE8E0' },
-    { name:'Cinnamon Rolls',            price:300,  unit:'Each',         emoji:'🌀', cat:'desserts',  bg:'#FFF0DC' },
-    { name:'Tiramisu',                  price:300,  unit:'Each',         emoji:'☕', cat:'desserts',  bg:'#F0E4D0' },
-    { name:'Banoffee Dessert',          price:300,  unit:'Each',         emoji:'🍌', cat:'desserts',  bg:'#FFF8D0' },
-    { name:'Chocolate Chip Cookies',    price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#FDE8D0' },
-    { name:'Chocolate Cookies',         price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#F5E0C8' },
-    { name:'Double Chocolate Cookies',  price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#F0D8C0' },
-    { name:'Oreo Cookies',              price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#E8E8F0' },
+    { name:'Brownie Sundae',            price:300,  unit:'Each',         cat:'desserts', bg:'#F5E8D0' },
+    { name:'Crunchic Brownie',          price:300,  unit:'Each',         cat:'desserts', bg:'#F5E0C8' },
+    { name:'Whipped Pineapple Delight', price:300,  unit:'Each',         cat:'desserts', bg:'#FFF8D0' },
+    { name:'Oreo Sundae',               price:300,  unit:'Each',         cat:'desserts', bg:'#E8E8F0' },
+    { name:'Dairy Milk Sundae',         price:300,  unit:'Each',         cat:'desserts', bg:'#FDE8E0' },
+    { name:'Cinnamon Rolls',            price:300,  unit:'Each',         cat:'desserts', bg:'#FFF0DC' },
+    { name:'Tiramisu',                  price:300,  unit:'Each',         cat:'desserts', bg:'#F0E4D0' },
+    { name:'Banoffee Dessert',          price:300,  unit:'Each',         cat:'desserts', bg:'#FFF8D0' },
+    { name:'Chocolate Chip Cookies',    price:300,  unit:'Each',         cat:'desserts', bg:'#FDE8D0' },
+    { name:'Chocolate Cookies',         price:300,  unit:'Each',         cat:'desserts', bg:'#F5E0C8' },
+    { name:'Double Chocolate Cookies',  price:300,  unit:'Each',         cat:'desserts', bg:'#F0D8C0' },
+    { name:'Oreo Cookies',              price:300,  unit:'Each',         cat:'desserts', bg:'#E8E8F0' },
     // CUPCAKES & MUFFINS
-    { name:'Chocolate Cupcakes',        price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#F5E0D0' },
-    { name:'Vanilla Cupcakes',          price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#FFF8F0' },
-    { name:'Red Velvet Cupcakes',       price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#FFE0E0' },
-    { name:'Oreo Cupcakes',             price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#E8E8F0' },
-    { name:'Pizza Muffins',             price:1200, unit:'6 Pieces',     emoji:'🫓', cat:'cupcakes',  bg:'#EEF5E8' },
+    { name:'Chocolate Cupcakes',        price:1200, unit:'6 Cupcakes',   cat:'cupcakes', bg:'#F5E0D0' },
+    { name:'Vanilla Cupcakes',          price:1200, unit:'6 Cupcakes',   cat:'cupcakes', bg:'#FFF8F0' },
+    { name:'Red Velvet Cupcakes',       price:1200, unit:'6 Cupcakes',   cat:'cupcakes', bg:'#FFE0E0' },
+    { name:'Oreo Cupcakes',             price:1200, unit:'6 Cupcakes',   cat:'cupcakes', bg:'#E8E8F0' },
+    { name:'Pizza Muffins',             price:1200, unit:'6 Pieces',     cat:'cupcakes', bg:'#EEF5E8' },
     // SAVOURY
-    { name:'Pizza Bread',               price:800,  unit:'Each',         emoji:'🍕', cat:'savoury',   bg:'#EEF5E8' },
-    { name:'Lasagna',                   price:800,  unit:'Each',         emoji:'🫕', cat:'savoury',   bg:'#EEF5E8' },
-    { name:'Club Sandwich',             price:1000, unit:'6 Sandwiches', emoji:'🥪', cat:'savoury',   bg:'#EEF5E8' },
-    { name:'Chicken Buns',              price:1000, unit:'6 Buns',       emoji:'🍞', cat:'savoury',   bg:'#EEF5E8' },
-    { name:'Cheese Buns',               price:1000, unit:'6 Buns',       emoji:'🧀', cat:'savoury',   bg:'#EEF5E8' },
+    { name:'Pizza Bread',               price:800,  unit:'Each',         cat:'savoury',  bg:'#EEF5E8' },
+    { name:'Lasagna',                   price:800,  unit:'Each',         cat:'savoury',  bg:'#EEF5E8' },
+    { name:'Club Sandwich',             price:1000, unit:'6 Sandwiches', cat:'savoury',  bg:'#EEF5E8' },
+    { name:'Chicken Buns',              price:1000, unit:'6 Buns',       cat:'savoury',  bg:'#EEF5E8' },
+    { name:'Cheese Buns',               price:1000, unit:'6 Buns',       cat:'savoury',  bg:'#EEF5E8' },
     // SIGNATURE SPECIALS
-    { name:'Crunchic Matilda Cake',     price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#FDE8E0' },
-    { name:'Crunchic Brownie Sundae',   price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#F5E0C8' },
-    { name:'Triple Chocolate Cake',     price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#F0D8C0' },
-    { name:'Premium Dry Fruit Cake',    price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#FFF0DC' },
-    { name:'Coffee Crunch Cake',        price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#F0E4D0' },
-    { name:'Cinnamon Rolls (6 pcs)',    price:1200, unit:'6 Rolls',      emoji:'⭐', cat:'specials',  bg:'#FFF8F0' },
+    { name:'Crunchic Matilda Cake',     price:1800, unit:'Special',      cat:'specials', bg:'#FDE8E0' },
+    { name:'Crunchic Brownie Sundae',   price:1800, unit:'Special',      cat:'specials', bg:'#F5E0C8' },
+    { name:'Triple Chocolate Cake',     price:1800, unit:'Special',      cat:'specials', bg:'#F0D8C0' },
+    { name:'Premium Dry Fruit Cake',    price:1800, unit:'Special',      cat:'specials', bg:'#FFF0DC' },
+    { name:'Coffee Crunch Cake',        price:1800, unit:'Special',      cat:'specials', bg:'#F0E4D0' },
+    { name:'Cinnamon Rolls (6 pcs)',    price:1200, unit:'6 Rolls',      cat:'specials', bg:'#FFF8F0' },
   ];
 
   const categories = [
@@ -501,33 +528,24 @@
     currentCat = cat;
     const grid = document.getElementById('menu-grid');
     grid.innerHTML = '';
+
     menuItems.filter(i => cat === 'all' || i.cat === cat).forEach(item => {
-      const qty = cart[item.name] || 0;
+      const qty  = cart[item.name] || 0;
+      const key  = item.name.replace(/[^a-z0-9]/gi, '_');
+      const src  = ITEMS_FOLDER + item.name + THUMB_EXT;
+
       const card = document.createElement('div');
       card.className = 'menu-card';
 
-      // Thumbnail: use real image if item.img is set, else show emoji placeholder
-      let thumbHTML;
-      if (item.img) {
-        thumbHTML = `<div class="menu-thumb" style="background:${item.bg}">
-          <img src="${item.img}" alt="${item.name}" onerror="this.style.display='none';this.parentElement.querySelector('.menu-thumb-placeholder').style.display='flex'">
-          <div class="menu-thumb-placeholder" style="display:none;position:absolute;inset:0;background:${item.bg}">
-            <span class="thumb-emoji">${item.emoji}</span>
-            <span class="thumb-label">Add photo</span>
-          </div>
-        </div>`;
-      } else {
-        thumbHTML = `<div class="menu-thumb" style="background:${item.bg}">
-          <div class="menu-thumb-placeholder">
-            <span class="thumb-emoji">${item.emoji}</span>
-            <span class="thumb-label">Add photo</span>
-          </div>
-        </div>`;
-      }
-
-      const key = item.name.replace(/[^a-z0-9]/gi,'_');
+      // Thumbnail: <img> with onerror fallback to a plain coloured block
       card.innerHTML = `
-        ${thumbHTML}
+        <div class="menu-thumb" style="background:${item.bg}">
+          <img
+            src="${src}"
+            alt="${item.name}"
+            onerror="this.style.display='none'"
+          />
+        </div>
         <div class="menu-card-body">
           <div class="menu-name">${item.name}</div>
           <div class="menu-unit">${item.unit}</div>
@@ -545,8 +563,8 @@
   function changeQty(name, delta, btn) {
     cart[name] = (cart[name] || 0) + delta;
     if (cart[name] <= 0) delete cart[name];
-    const key = name.replace(/[^a-z0-9]/gi,'_');
-    const el = document.getElementById('qty-' + key);
+    const key = name.replace(/[^a-z0-9]/gi, '_');
+    const el  = document.getElementById('qty-' + key);
     if (el) el.textContent = cart[name] || 0;
     btn.classList.remove('pop-anim');
     void btn.offsetWidth;
@@ -555,9 +573,9 @@
   }
 
   function updateCartBadge() {
-    const total = Object.values(cart).reduce((a,b) => a+b, 0);
+    const total = Object.values(cart).reduce((a, b) => a + b, 0);
     document.getElementById('cart-count').textContent = total;
-    document.getElementById('checkout-btn').disabled = total === 0;
+    document.getElementById('checkout-btn').disabled  = total === 0;
   }
 
   function filterCat(cat, btn) {
@@ -585,7 +603,7 @@
   }
 
   function renderCartItems() {
-    const el = document.getElementById('cart-items-list');
+    const el   = document.getElementById('cart-items-list');
     const keys = Object.keys(cart);
     if (keys.length === 0) {
       el.innerHTML = '<div class="cart-empty">🧁 Your cart is empty.<br>Add some items from the menu!</div>';
@@ -601,7 +619,9 @@
       const div = document.createElement('div');
       div.className = 'cart-item';
       div.innerHTML = `
-        <span class="cart-item-emoji">${item.emoji}</span>
+        <div style="width:40px;height:40px;border-radius:8px;overflow:hidden;background:${item.bg};flex-shrink:0;">
+          <img src="${ITEMS_FOLDER}${item.name}${THUMB_EXT}" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display='none'">
+        </div>
         <div class="cart-item-info">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">Rs ${item.price.toLocaleString()} × ${qty} = Rs ${sub.toLocaleString()}</div>
@@ -621,8 +641,8 @@
     if (cart[name] <= 0) delete cart[name];
     updateCartBadge();
     renderCartItems();
-    const key = name.replace(/[^a-z0-9]/gi,'_');
-    const el = document.getElementById('qty-' + key);
+    const key = name.replace(/[^a-z0-9]/gi, '_');
+    const el  = document.getElementById('qty-' + key);
     if (el) el.textContent = cart[name] || 0;
   }
 
@@ -636,10 +656,11 @@
     openCart();
   }
 
-  // Show/hide address field based on order type
   document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('c-type').addEventListener('change', function() {
-      document.getElementById('address-field').style.display = this.value === 'delivery' ? 'flex' : 'none';
+    document.getElementById('c-type').addEventListener('change', function () {
+      const isDelivery = this.value === 'delivery';
+      document.getElementById('address-field').style.display    = isDelivery ? 'flex'  : 'none';
+      document.getElementById('delivery-info-box').style.display = isDelivery ? 'block' : 'none';
     });
   });
 
@@ -650,14 +671,14 @@
     const address = document.getElementById('c-address').value.trim();
     const note    = document.getElementById('c-note').value.trim();
 
-    document.getElementById('c-name').style.borderColor  = '';
-    document.getElementById('c-phone').style.borderColor = '';
+    document.getElementById('c-name').style.borderColor    = '';
+    document.getElementById('c-phone').style.borderColor   = '';
     document.getElementById('c-address').style.borderColor = '';
 
     let valid = true;
-    if (!name)  { document.getElementById('c-name').style.borderColor  = '#B05070'; valid=false; }
-    if (!phone) { document.getElementById('c-phone').style.borderColor = '#B05070'; valid=false; }
-    if (type === 'delivery' && !address) { document.getElementById('c-address').style.borderColor = '#B05070'; valid=false; }
+    if (!name)  { document.getElementById('c-name').style.borderColor  = '#B05070'; valid = false; }
+    if (!phone) { document.getElementById('c-phone').style.borderColor = '#B05070'; valid = false; }
+    if (type === 'delivery' && !address) { document.getElementById('c-address').style.borderColor = '#B05070'; valid = false; }
     if (!valid) return;
 
     orderData = { name, phone, type, address, note };
@@ -669,8 +690,8 @@
   function showReceipt() {
     const now = new Date();
     document.getElementById('receipt-date').textContent =
-      now.toLocaleDateString('en-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) +
-      ' · ' + now.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
+      now.toLocaleDateString('en-PK', { weekday:'long', year:'numeric', month:'long', day:'numeric' }) +
+      ' · ' + now.toLocaleTimeString('en-PK', { hour:'2-digit', minute:'2-digit' });
 
     document.getElementById('r-name').textContent  = orderData.name;
     document.getElementById('r-phone').textContent = orderData.phone;
@@ -693,21 +714,21 @@
       subtotal += sub;
       const row = document.createElement('div');
       row.className = 'receipt-row';
-      row.innerHTML = `<span class="receipt-row-name">${item.emoji} ${name} × ${cart[name]}</span><span class="receipt-row-price">Rs ${sub.toLocaleString()}</span>`;
+      row.innerHTML = `<span class="receipt-row-name">${name} × ${cart[name]}</span><span class="receipt-row-price">Rs ${sub.toLocaleString()}</span>`;
       itemsEl.appendChild(row);
     });
 
     document.getElementById('r-subtotal').textContent = 'Rs ' + subtotal.toLocaleString();
 
-    const delivRow = document.getElementById('r-delivery-row');
+    const delivRow  = document.getElementById('r-delivery-row');
     const delivNote = document.getElementById('r-delivery-note');
     if (orderData.type === 'delivery') {
       delivRow.style.display = 'flex';
       document.getElementById('r-delivery-cost').textContent = 'TBD';
-      delivNote.textContent = '🚴 Free within 3 km · charges beyond 3 km will be confirmed on WhatsApp';
+      delivNote.textContent  = '🚴 Delivery charges will be confirmed on WhatsApp based on your distance.';
       delivNote.style.display = 'block';
     } else {
-      delivRow.style.display = 'none';
+      delivRow.style.display  = 'none';
       delivNote.style.display = 'none';
     }
 
@@ -741,13 +762,13 @@
       if (!item) return;
       const sub = item.price * cart[name];
       subtotal += sub;
-      msg += `• ${item.emoji} ${name} × ${cart[name]} = Rs ${sub.toLocaleString()}\n`;
+      msg += `• ${name} × ${cart[name]} = Rs ${sub.toLocaleString()}\n`;
     });
     msg += `\n💰 *Subtotal: Rs ${subtotal.toLocaleString()}*`;
     if (orderData.type === 'delivery') {
-      msg += `\n🚴 *Delivery:* Free within 3 km · charges to be confirmed for farther distance`;
+      msg += `\n🚴 *Delivery charges:* To be confirmed based on distance`;
     }
-    msg += `\n💳 *Total Payable: Rs ${subtotal.toLocaleString()}${orderData.type === 'delivery' ? ' + delivery charges (if applicable)' : ''}*`;
+    msg += `\n💳 *Total Payable: Rs ${subtotal.toLocaleString()}${orderData.type === 'delivery' ? ' + delivery charges' : ''}*`;
     if (orderData.note) msg += `\n\n📝 *Special requests:* ${orderData.note}`;
     msg += `\n\n🕐 _Ordered at: ${now}_`;
 
@@ -759,9 +780,10 @@
     cart = {};
     orderData = {};
     document.getElementById('receipt-modal').classList.remove('open');
-    ['c-name','c-phone','c-address','c-note'].forEach(id => { document.getElementById(id).value=''; });
+    ['c-name', 'c-phone', 'c-address', 'c-note'].forEach(id => { document.getElementById(id).value = ''; });
     document.getElementById('c-type').value = 'pickup';
-    document.getElementById('address-field').style.display = 'none';
+    document.getElementById('address-field').style.display     = 'none';
+    document.getElementById('delivery-info-box').style.display = 'none';
     updateCartBadge();
     renderMenu(currentCat);
   }
