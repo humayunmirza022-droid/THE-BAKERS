@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Rustic Loaf – Bakery Rawalpindi</title>
+  <title>Crunchic Baking Lab – Rawalpindi</title>
   <style>
     *{box-sizing:border-box;margin:0;padding:0;}
     :root{
@@ -19,9 +19,14 @@
     body{font-family:Georgia,'Times New Roman',serif;background:var(--cream);color:var(--dk-brown);}
 
     /* ── NAV ── */
-    .nav{display:flex;justify-content:space-between;align-items:center;padding:14px 32px;background:var(--cream);border-bottom:2px solid var(--card-border);position:sticky;top:0;z-index:100;}
-    .logo{font-size:20px;font-weight:bold;color:var(--dk-brown);}
-    .logo span{color:var(--pink);}
+    .nav{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;background:var(--cream);border-bottom:2px solid var(--card-border);position:sticky;top:0;z-index:100;}
+    .logo-area{display:flex;align-items:center;gap:12px;}
+    /* LOGO IMAGE PLACEHOLDER — replace the div below with <img src="your-logo.png"> */
+    .logo-img-placeholder{width:52px;height:52px;border-radius:12px;background:#F0C8C0;border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mid-brown);text-align:center;line-height:1.3;padding:4px;cursor:pointer;flex-shrink:0;}
+    .logo-text{display:flex;flex-direction:column;}
+    .logo-name{font-size:17px;font-weight:bold;color:var(--dk-brown);letter-spacing:.3px;}
+    .logo-name span{color:var(--pink);}
+    .logo-tagline{font-size:10px;color:var(--mid-brown);letter-spacing:.5px;text-transform:uppercase;}
     .nav-right{display:flex;align-items:center;gap:20px;}
     .nav-links{display:flex;gap:20px;}
     .nav-links a{font-size:14px;color:var(--brown);text-decoration:none;cursor:pointer;transition:color .2s;}
@@ -46,6 +51,10 @@
     @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.18)}70%{transform:scale(0.94)}100%{transform:scale(1)}}
     .pop-anim{animation:pop .35s ease forwards;}
 
+    /* ── DELIVERY BADGE ── */
+    .delivery-bar{background:#FFF3CD;border-top:2px solid #E6C87A;border-bottom:2px solid #E6C87A;padding:10px 20px;text-align:center;font-size:13px;color:#7A5B00;font-weight:600;}
+    .delivery-bar span{color:var(--pink);}
+
     /* ── MENU ── */
     .section{padding:40px 32px;background:#FFF9F6;}
     .section-title{font-size:22px;font-weight:bold;color:var(--dk-brown);margin-bottom:6px;}
@@ -54,18 +63,27 @@
     .cat-btn{background:var(--cream);color:#111;border:2px solid var(--card-border);padding:7px 18px;border-radius:24px;font-size:13px;cursor:pointer;font-weight:600;transition:background .15s,transform .1s;}
     .cat-btn:active{transform:scale(0.92);}
     .cat-btn.active{background:var(--pink);color:#fff;border-color:var(--pink);}
-    .menu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;}
+
+    /* ── MENU CARD ── */
     .menu-card{background:#FFF;border:2px solid var(--card-border);border-radius:16px;overflow:hidden;transition:transform .18s,border-color .15s;}
     .menu-card:hover{transform:translateY(-4px);border-color:var(--pink);}
-    .menu-img{width:100%;height:100px;display:flex;align-items:center;justify-content:center;font-size:40px;}
+    /* THUMBNAIL AREA — each card has a colored background + placeholder image slot */
+    .menu-thumb{width:100%;height:110px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+    .menu-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+    /* Fallback shown when no real image is provided */
+    .menu-thumb-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+    .thumb-emoji{font-size:38px;line-height:1;}
+    .thumb-label{font-size:9px;color:rgba(0,0,0,.35);text-transform:uppercase;letter-spacing:.5px;}
     .menu-card-body{padding:12px 14px 14px;}
-    .menu-name{font-size:14px;font-weight:bold;color:var(--dk-brown);}
-    .menu-price{font-size:13px;color:var(--mid-brown);margin:4px 0 10px;}
-    .qty-row{display:flex;align-items:center;gap:7px;}
-    .qty-btn{background:var(--cream);color:#111;border:2px solid var(--card-border);width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:background .15s,border-color .15s;flex-shrink:0;}
+    .menu-name{font-size:13px;font-weight:bold;color:var(--dk-brown);line-height:1.35;}
+    .menu-unit{font-size:11px;color:var(--mid-brown);margin:2px 0;}
+    .menu-price{font-size:13px;color:var(--pink);font-weight:700;margin:4px 0 10px;}
+    .qty-row{display:flex;align-items:center;gap:6px;}
+    .qty-btn{background:var(--cream);color:#111;border:2px solid var(--card-border);width:28px;height:28px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;transition:background .15s,border-color .15s;flex-shrink:0;}
     .qty-btn:hover{background:#F0C8C0;border-color:var(--pink);}
     .qty-num{font-size:14px;font-weight:700;color:var(--dk-brown);min-width:18px;text-align:center;}
-    .add-btn-label{flex:1;background:var(--cream);color:#111;border:2px solid var(--card-border);padding:6px 0;border-radius:20px;font-size:12px;cursor:pointer;font-weight:600;transition:background .15s,border-color .15s;text-align:center;}
+    .add-btn-label{flex:1;background:var(--cream);color:#111;border:2px solid var(--card-border);padding:5px 0;border-radius:20px;font-size:11px;cursor:pointer;font-weight:600;transition:background .15s,border-color .15s;text-align:center;}
     .add-btn-label:hover{background:#F0C8C0;border-color:var(--pink);}
     .add-btn-label.popping{animation:pop .35s ease forwards;}
 
@@ -93,7 +111,7 @@
     /* ── CART DRAWER ── */
     .cart-overlay{position:fixed;inset:0;background:rgba(74,36,16,.35);z-index:500;display:none;}
     .cart-overlay.open{display:block;}
-    .cart-drawer{position:fixed;top:0;right:0;width:340px;max-width:95vw;height:100%;background:#FFF9F6;border-left:2px solid var(--card-border);z-index:600;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s ease;}
+    .cart-drawer{position:fixed;top:0;right:0;width:360px;max-width:95vw;height:100%;background:#FFF9F6;border-left:2px solid var(--card-border);z-index:600;display:flex;flex-direction:column;transform:translateX(100%);transition:transform .3s ease;}
     .cart-drawer.open{transform:translateX(0);}
     .cart-header{padding:20px 22px;border-bottom:2px solid var(--card-border);display:flex;justify-content:space-between;align-items:center;}
     .cart-header h3{font-size:17px;font-weight:bold;color:var(--dk-brown);}
@@ -110,7 +128,8 @@
     .cq-btn:hover{background:#F0C8C0;border-color:var(--pink);}
     .cart-empty{text-align:center;padding:48px 20px;color:var(--mid-brown);font-size:14px;line-height:1.7;}
     .cart-footer{padding:18px 22px;border-top:2px solid var(--card-border);background:#FFF9F6;}
-    .cart-total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:bold;color:var(--dk-brown);margin-bottom:14px;}
+    .cart-total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:bold;color:var(--dk-brown);margin-bottom:4px;}
+    .cart-delivery-note{font-size:11px;color:var(--mid-brown);margin-bottom:12px;line-height:1.5;}
     .checkout-btn{width:100%;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:30px;font-size:15px;cursor:pointer;font-weight:700;transition:background .15s,transform .15s;}
     .checkout-btn:hover{background:var(--pink-dark);}
     .checkout-btn:active{transform:scale(0.97);}
@@ -121,13 +140,14 @@
     .modal-overlay.open{display:flex;}
 
     /* ── CHECKOUT MODAL ── */
-    .modal{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;width:380px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
+    .modal{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;width:400px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
     .modal h3{font-size:18px;font-weight:bold;color:var(--dk-brown);margin-bottom:20px;}
     .modal-field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;}
     .modal-field label{font-size:13px;color:var(--brown);font-weight:700;}
-    .modal-field input,.modal-field textarea{font-size:14px;border:2px solid var(--card-border);border-radius:10px;padding:10px 12px;background:var(--cream);color:var(--dk-brown);outline:none;font-family:inherit;transition:border-color .15s;}
-    .modal-field input:focus,.modal-field textarea:focus{border-color:var(--pink);}
+    .modal-field input,.modal-field textarea,.modal-field select{font-size:14px;border:2px solid var(--card-border);border-radius:10px;padding:10px 12px;background:var(--cream);color:var(--dk-brown);outline:none;font-family:inherit;transition:border-color .15s;}
+    .modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--pink);}
     .modal-field textarea{min-height:70px;resize:vertical;}
+    .delivery-info-box{background:#FFF3CD;border:1.5px solid #E6C87A;border-radius:10px;padding:10px 14px;font-size:12px;color:#7A5B00;line-height:1.6;margin-bottom:14px;}
     .modal-btns{display:flex;gap:12px;margin-top:18px;}
     .modal-cancel{flex:1;background:transparent;color:var(--brown);border:2px solid var(--card-border);padding:11px;border-radius:24px;font-size:14px;cursor:pointer;font-weight:600;transition:background .15s;}
     .modal-cancel:hover{background:var(--blush);}
@@ -135,18 +155,25 @@
     .modal-confirm:hover{background:var(--pink-dark);}
 
     /* ── RECEIPT ── */
-    .receipt{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;width:400px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
+    .receipt{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;width:440px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
     .receipt-header{text-align:center;margin-bottom:18px;border-bottom:2px dashed var(--card-border);padding-bottom:16px;}
-    .receipt-logo{font-size:22px;font-weight:bold;color:var(--dk-brown);}
+    /* RECEIPT LOGO PLACEHOLDER */
+    .receipt-logo-img{width:56px;height:56px;border-radius:12px;background:#F0C8C0;border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--mid-brown);text-align:center;margin:0 auto 8px;line-height:1.3;}
+    .receipt-logo{font-size:20px;font-weight:bold;color:var(--dk-brown);}
     .receipt-logo span{color:var(--pink);}
+    .receipt-tagline{font-size:11px;color:var(--mid-brown);letter-spacing:.4px;text-transform:uppercase;margin-top:2px;}
     .receipt-addr{font-size:12px;color:var(--mid-brown);margin-top:5px;}
     .receipt-date{font-size:12px;color:var(--mid-brown);margin-top:4px;}
     .receipt-section{margin-bottom:14px;}
     .receipt-label{font-size:11px;color:var(--mid-brown);font-weight:700;text-transform:uppercase;letter-spacing:.6px;margin-bottom:7px;}
-    .receipt-row{display:flex;justify-content:space-between;font-size:14px;color:var(--dk-brown);padding:5px 0;border-bottom:1px dashed #E2C9BD;}
+    .receipt-row{display:flex;justify-content:space-between;font-size:14px;color:var(--dk-brown);padding:5px 0;border-bottom:1px dashed #E2C9BD;gap:8px;}
     .receipt-row:last-child{border-bottom:none;}
-    .receipt-row-sub{font-size:12px;color:var(--mid-brown);}
-    .receipt-total-row{display:flex;justify-content:space-between;font-size:17px;font-weight:bold;color:var(--dk-brown);margin-top:14px;padding-top:12px;border-top:2px solid var(--card-border);}
+    .receipt-row-name{flex:1;}
+    .receipt-row-price{flex-shrink:0;font-weight:600;}
+    .receipt-subtotal-row{display:flex;justify-content:space-between;font-size:14px;color:var(--dk-brown);padding:6px 0;margin-top:8px;border-top:1px solid var(--card-border);}
+    .receipt-delivery-row{display:flex;justify-content:space-between;font-size:13px;color:var(--mid-brown);padding:4px 0;}
+    .receipt-delivery-note{font-size:11px;color:var(--mid-brown);margin-top:4px;line-height:1.5;font-style:italic;}
+    .receipt-total-row{display:flex;justify-content:space-between;font-size:18px;font-weight:bold;color:var(--dk-brown);margin-top:10px;padding-top:12px;border-top:2px solid var(--card-border);}
     .receipt-footer{text-align:center;font-size:13px;color:var(--mid-brown);margin-top:16px;padding-top:14px;border-top:2px dashed var(--card-border);line-height:1.6;}
     .receipt-btns{display:flex;gap:12px;margin-top:18px;}
     .wa-send-btn{flex:2;background:#25D366;color:#fff;border:none;padding:13px;border-radius:28px;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;transition:background .15s;}
@@ -157,12 +184,15 @@
 
     /* ── RESPONSIVE ── */
     @media(max-width:600px){
-      .nav{padding:12px 16px;}
+      .nav{padding:10px 14px;}
       .nav-links{display:none;}
-      .hero{padding:40px 16px 32px;}
-      .hero h1{font-size:26px;}
-      .section,.story,.location{padding:28px 16px;}
+      .logo-name{font-size:14px;}
+      .logo-tagline{font-size:9px;}
+      .hero{padding:36px 16px 28px;}
+      .hero h1{font-size:24px;}
+      .section,.story,.location{padding:24px 14px;}
       .cart-drawer{width:100%;}
+      .menu-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px;}
     }
   </style>
 </head>
@@ -170,7 +200,17 @@
 
 <!-- ── NAV ── -->
 <nav class="nav">
-  <span class="logo">The <span>Rustic</span> Loaf</span>
+  <div class="logo-area">
+    <!--
+      LOGO: Replace this div with:
+      <img src="your-logo.png" style="width:52px;height:52px;border-radius:12px;object-fit:contain;">
+    -->
+    <div class="logo-img-placeholder" title="Add your logo here">Your<br>Logo</div>
+    <div class="logo-text">
+      <span class="logo-name"><span>Crunchic</span> Baking Lab</span>
+      <span class="logo-tagline">Freshly Baked with Love &amp; Crunch</span>
+    </div>
+  </div>
   <div class="nav-right">
     <div class="nav-links">
       <a onclick="scrollToId('menu')">Menu</a>
@@ -183,11 +223,16 @@
   </div>
 </nav>
 
+<!-- ── DELIVERY BAR ── -->
+<div class="delivery-bar">
+  🚴 <strong>Free delivery within 3 km</strong> &nbsp;·&nbsp; <span>Delivery charges apply beyond 3 km — ask us on WhatsApp</span>
+</div>
+
 <!-- ── HERO ── -->
 <section class="hero">
-  <div class="hero-badge">🌾 Baked fresh daily</div>
-  <h1>Handcrafted with love,<br>served warm</h1>
-  <p>Artisan breads, pastries, and cakes made from scratch using time-honoured recipes right here in Rawalpindi.</p>
+  <div class="hero-badge">🌾 Freshly Baked with Love &amp; Crunch</div>
+  <h1>Handcrafted with love,<br>served with crunch</h1>
+  <p>Artisan cakes, desserts, cupcakes &amp; savoury bakes made from scratch right here in Rawalpindi.</p>
   <div class="hero-btns">
     <button class="btn-fill" onclick="scrollToId('menu')">Order now</button>
     <button class="btn-out" onclick="scrollToId('menu')">See our menu</button>
@@ -198,11 +243,7 @@
 <section class="section" id="menu">
   <p class="section-title">Our menu</p>
   <p class="section-sub">Add items to your cart, then checkout when ready</p>
-  <div class="cat-row">
-    <button class="cat-btn active" onclick="filterCat('all',this)">All</button>
-    <button class="cat-btn" onclick="filterCat('sweet',this)">Sweet</button>
-    <button class="cat-btn" onclick="filterCat('savoury',this)">Savoury</button>
-  </div>
+  <div class="cat-row" id="cat-row"></div>
   <div class="menu-grid" id="menu-grid"></div>
 </section>
 
@@ -210,10 +251,10 @@
 
 <!-- ── STORY ── -->
 <section class="story" id="story">
-  <div class="story-icon">🏡</div>
+  <div class="story-icon">🧁</div>
   <div>
     <h2>Our story</h2>
-    <p>Started in a home kitchen in Rawalpindi, The Rustic Loaf grew from a passion for honest, wholesome baking. Every item is made by hand — no shortcuts, just quality ingredients, patience, and a little love.</p>
+    <p>Started in a home kitchen in Rawalpindi, Crunchic Baking Lab was born from a passion for honest, wholesome baking. Every item is made by hand — no shortcuts, just quality ingredients, patience, and a little love.</p>
   </div>
 </section>
 
@@ -225,13 +266,14 @@
   <div class="location-card">
     <div class="loc-row">📍 <span>Saddar, Rawalpindi, Punjab — walk-ins welcome</span></div>
     <div class="loc-row">🕐 <span>Mon–Sat: 7:30 am – 8:00 pm &nbsp;|&nbsp; Sun: 8:00 am – 2:00 pm</span></div>
+    <div class="loc-row">🚴 <span>Free delivery within 3 km · charges apply beyond</span></div>
     <div class="loc-row">💬 <span>+92 300 0000000</span></div>
-    <div class="loc-row">✉️ <span>hello@rusticloaf.pk</span></div>
+    <div class="loc-row">✉️ <span>hello@crunchicbakinglab.pk</span></div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer class="footer">© 2026 The Rustic Loaf · Made with love in Rawalpindi 🤎</footer>
+<footer class="footer">© 2026 Crunchic Baking Lab · Made with love &amp; crunch in Rawalpindi 🤎</footer>
 
 <!-- ── WHATSAPP FAB ── -->
 <div class="wa-fab" onclick="openWhatsApp()" title="Chat on WhatsApp">
@@ -250,9 +292,10 @@
   <div class="cart-items" id="cart-items-list"></div>
   <div class="cart-footer">
     <div class="cart-total-row">
-      <span>Total</span>
+      <span>Subtotal</span>
       <span id="cart-total-display">Rs 0</span>
     </div>
+    <div class="cart-delivery-note">🚴 Free delivery within 3 km · charges apply beyond 3 km</div>
     <button class="checkout-btn" id="checkout-btn" onclick="openCheckout()" disabled>Checkout →</button>
   </div>
 </div>
@@ -270,8 +313,18 @@
       <input type="text" id="c-phone" placeholder="+92 300 0000000">
     </div>
     <div class="modal-field">
-      <label>Delivery address (optional)</label>
+      <label>Order type *</label>
+      <select id="c-type">
+        <option value="pickup">Pick-up (from our bakery)</option>
+        <option value="delivery">Delivery</option>
+      </select>
+    </div>
+    <div class="modal-field" id="address-field" style="display:none;">
+      <label>Delivery address *</label>
       <input type="text" id="c-address" placeholder="e.g. House 5, Street 3, Saddar, Rawalpindi">
+    </div>
+    <div class="delivery-info-box">
+      🚴 <strong>Delivery Policy:</strong> Free within 3 km of our bakery in Saddar, Rawalpindi. Delivery charges apply beyond 3 km — our team will confirm the exact charge on WhatsApp after you place the order.
     </div>
     <div class="modal-field">
       <label>Special requests (optional)</label>
@@ -288,26 +341,45 @@
 <div class="modal-overlay" id="receipt-modal">
   <div class="receipt">
     <div class="receipt-header">
-      <div class="receipt-logo">The <span>Rustic</span> Loaf</div>
-      <div class="receipt-addr">Saddar, Rawalpindi · hello@rusticloaf.pk</div>
+      <!--
+        RECEIPT LOGO: Replace this div with:
+        <img src="your-logo.png" style="width:56px;height:56px;border-radius:12px;object-fit:contain;margin:0 auto 8px;display:block;">
+      -->
+      <div class="receipt-logo-img">Your<br>Logo</div>
+      <div class="receipt-logo"><span>Crunchic</span> Baking Lab</div>
+      <div class="receipt-tagline">Freshly Baked with Love &amp; Crunch</div>
+      <div class="receipt-addr">Saddar, Rawalpindi · hello@crunchicbakinglab.pk</div>
       <div class="receipt-date" id="receipt-date"></div>
     </div>
 
     <div class="receipt-section">
       <div class="receipt-label">Customer</div>
       <div class="receipt-row">
-        <span id="r-name"></span>
-        <span id="r-phone"></span>
+        <span class="receipt-row-name" id="r-name"></span>
+        <span class="receipt-row-price" id="r-phone"></span>
+      </div>
+      <div class="receipt-row" id="r-type-row">
+        <span class="receipt-row-name">Order type</span>
+        <span class="receipt-row-price" id="r-type"></span>
       </div>
       <div class="receipt-row" id="r-address-row" style="display:none;">
-        <span>Address</span>
-        <span id="r-address" style="text-align:right;max-width:60%;"></span>
+        <span class="receipt-row-name">Address</span>
+        <span class="receipt-row-price" id="r-address" style="text-align:right;max-width:60%;"></span>
       </div>
     </div>
 
     <div class="receipt-section">
       <div class="receipt-label">Order items</div>
       <div id="r-items"></div>
+      <div class="receipt-subtotal-row">
+        <span>Subtotal</span>
+        <span id="r-subtotal"></span>
+      </div>
+      <div class="receipt-delivery-row" id="r-delivery-row">
+        <span>Delivery</span>
+        <span id="r-delivery-cost"></span>
+      </div>
+      <div class="receipt-delivery-note" id="r-delivery-note"></div>
     </div>
 
     <div class="receipt-section" id="r-note-section" style="display:none;">
@@ -316,14 +388,14 @@
     </div>
 
     <div class="receipt-total-row">
-      <span>Total</span>
+      <span>Total Payable</span>
       <span id="r-total"></span>
     </div>
 
     <div class="receipt-footer">
       Thank you for your order! 🤎<br>
       We'll confirm on WhatsApp shortly.<br>
-      <strong>The Rustic Loaf, Rawalpindi</strong>
+      <strong>Crunchic Baking Lab, Rawalpindi</strong>
     </div>
 
     <div class="receipt-btns">
@@ -339,23 +411,92 @@
 </div>
 
 <script>
-  // ── CHANGE THIS TO YOUR WHATSAPP NUMBER (with country code, no + or spaces) ──
+  // ── CHANGE THIS TO YOUR WHATSAPP NUMBER (country code, no + or spaces) ──
   const WHATSAPP_NUMBER = '923000000000';
 
+  // ─────────────────────────────────────────────────────────────────
+  // MENU DATA
+  // Each item has: name, price, unit, emoji (fallback), cat, bg (card bg colour)
+  //
+  // HOW TO ADD YOUR OWN THUMBNAIL IMAGES:
+  // 1. Add an "img" property to any item, e.g.: img: 'images/chocolate-cake.jpg'
+  // 2. Put the image file next to the HTML file (or use a URL)
+  // 3. The card will show your photo instead of the emoji placeholder.
+  // ─────────────────────────────────────────────────────────────────
   const menuItems = [
-    { name: 'Vanilla pastry',            price: 220,  emoji: '🍰', cat: 'sweet'   },
-    { name: 'Chocolate fudge brownie',   price: 180,  emoji: '🍫', cat: 'sweet'   },
-    { name: 'Double chocolate fudge cake', price: 1400, emoji: '🎂', cat: 'sweet' },
-    { name: 'Three milk cake',           price: 1200, emoji: '🍮', cat: 'sweet'   },
-    { name: 'Chicken bread',             price: 380,  emoji: '🍞', cat: 'savoury' },
-    { name: 'Pizza bread',               price: 420,  emoji: '🍕', cat: 'savoury' },
+    // CAKES
+    { name:'Plain Tea Cake',            price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
+    { name:'Almond Cake',               price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
+    { name:'Mixed Dry Fruit Cake',      price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
+    { name:'Plain Chocolate Cake',      price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
+    { name:'Double Chocolate Cake',     price:1600, unit:'2 Pound Cake', emoji:'🍫', cat:'cakes',     bg:'#F5E0D0' },
+    { name:'Matilda Cake',              price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FDE8E0' },
+    { name:'Three Milk (Tres Leches)',  price:1600, unit:'2 Pound Cake', emoji:'🍮', cat:'cakes',     bg:'#FFF0DC' },
+    { name:'Coffee Cake',               price:1600, unit:'2 Pound Cake', emoji:'☕', cat:'cakes',     bg:'#F0E4D0' },
+    { name:'Oreo Cake',                 price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#E8E8F0' },
+    { name:'Red Velvet Cake',           price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FFE0E0' },
+    { name:'White Chocolate Cake',      price:1600, unit:'2 Pound Cake', emoji:'🎂', cat:'cakes',     bg:'#FFF8F0' },
+    // DESSERTS
+    { name:'Brownie Sundae',            price:300,  unit:'Each',         emoji:'🍨', cat:'desserts',  bg:'#F5E8D0' },
+    { name:'Crunchic Brownie',          price:300,  unit:'Each',         emoji:'🍫', cat:'desserts',  bg:'#F5E0C8' },
+    { name:'Whipped Pineapple Delight', price:300,  unit:'Each',         emoji:'🍍', cat:'desserts',  bg:'#FFF8D0' },
+    { name:'Oreo Sundae',               price:300,  unit:'Each',         emoji:'🍨', cat:'desserts',  bg:'#E8E8F0' },
+    { name:'Dairy Milk Sundae',         price:300,  unit:'Each',         emoji:'🍦', cat:'desserts',  bg:'#FDE8E0' },
+    { name:'Cinnamon Rolls',            price:300,  unit:'Each',         emoji:'🌀', cat:'desserts',  bg:'#FFF0DC' },
+    { name:'Tiramisu',                  price:300,  unit:'Each',         emoji:'☕', cat:'desserts',  bg:'#F0E4D0' },
+    { name:'Banoffee Dessert',          price:300,  unit:'Each',         emoji:'🍌', cat:'desserts',  bg:'#FFF8D0' },
+    { name:'Chocolate Chip Cookies',    price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#FDE8D0' },
+    { name:'Chocolate Cookies',         price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#F5E0C8' },
+    { name:'Double Chocolate Cookies',  price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#F0D8C0' },
+    { name:'Oreo Cookies',              price:300,  unit:'Each',         emoji:'🍪', cat:'desserts',  bg:'#E8E8F0' },
+    // CUPCAKES & MUFFINS
+    { name:'Chocolate Cupcakes',        price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#F5E0D0' },
+    { name:'Vanilla Cupcakes',          price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#FFF8F0' },
+    { name:'Red Velvet Cupcakes',       price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#FFE0E0' },
+    { name:'Oreo Cupcakes',             price:1200, unit:'6 Cupcakes',   emoji:'🧁', cat:'cupcakes',  bg:'#E8E8F0' },
+    { name:'Pizza Muffins',             price:1200, unit:'6 Pieces',     emoji:'🫓', cat:'cupcakes',  bg:'#EEF5E8' },
+    // SAVOURY
+    { name:'Pizza Bread',               price:800,  unit:'Each',         emoji:'🍕', cat:'savoury',   bg:'#EEF5E8' },
+    { name:'Lasagna',                   price:800,  unit:'Each',         emoji:'🫕', cat:'savoury',   bg:'#EEF5E8' },
+    { name:'Club Sandwich',             price:1000, unit:'6 Sandwiches', emoji:'🥪', cat:'savoury',   bg:'#EEF5E8' },
+    { name:'Chicken Buns',              price:1000, unit:'6 Buns',       emoji:'🍞', cat:'savoury',   bg:'#EEF5E8' },
+    { name:'Cheese Buns',               price:1000, unit:'6 Buns',       emoji:'🧀', cat:'savoury',   bg:'#EEF5E8' },
+    // SIGNATURE SPECIALS
+    { name:'Crunchic Matilda Cake',     price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#FDE8E0' },
+    { name:'Crunchic Brownie Sundae',   price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#F5E0C8' },
+    { name:'Triple Chocolate Cake',     price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#F0D8C0' },
+    { name:'Premium Dry Fruit Cake',    price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#FFF0DC' },
+    { name:'Coffee Crunch Cake',        price:1800, unit:'Special',      emoji:'⭐', cat:'specials',  bg:'#F0E4D0' },
+    { name:'Cinnamon Rolls (6 pcs)',    price:1200, unit:'6 Rolls',      emoji:'⭐', cat:'specials',  bg:'#FFF8F0' },
+  ];
+
+  const categories = [
+    { id:'all',      label:'All' },
+    { id:'cakes',    label:'🎂 Cakes' },
+    { id:'desserts', label:'🍨 Desserts' },
+    { id:'cupcakes', label:'🧁 Cupcakes & Muffins' },
+    { id:'savoury',  label:'🍕 Savoury' },
+    { id:'specials', label:'⭐ Specials' },
   ];
 
   let cart = {};
   let orderData = {};
   let currentCat = 'all';
 
-  // ── MENU ──
+  // ── RENDER CATEGORY BUTTONS ──
+  function renderCategories() {
+    const row = document.getElementById('cat-row');
+    row.innerHTML = '';
+    categories.forEach(c => {
+      const btn = document.createElement('button');
+      btn.className = 'cat-btn' + (c.id === 'all' ? ' active' : '');
+      btn.textContent = c.label;
+      btn.onclick = () => filterCat(c.id, btn);
+      row.appendChild(btn);
+    });
+  }
+
+  // ── RENDER MENU ──
   function renderMenu(cat) {
     currentCat = cat;
     const grid = document.getElementById('menu-grid');
@@ -364,15 +505,37 @@
       const qty = cart[item.name] || 0;
       const card = document.createElement('div');
       card.className = 'menu-card';
+
+      // Thumbnail: use real image if item.img is set, else show emoji placeholder
+      let thumbHTML;
+      if (item.img) {
+        thumbHTML = `<div class="menu-thumb" style="background:${item.bg}">
+          <img src="${item.img}" alt="${item.name}" onerror="this.style.display='none';this.parentElement.querySelector('.menu-thumb-placeholder').style.display='flex'">
+          <div class="menu-thumb-placeholder" style="display:none;position:absolute;inset:0;background:${item.bg}">
+            <span class="thumb-emoji">${item.emoji}</span>
+            <span class="thumb-label">Add photo</span>
+          </div>
+        </div>`;
+      } else {
+        thumbHTML = `<div class="menu-thumb" style="background:${item.bg}">
+          <div class="menu-thumb-placeholder">
+            <span class="thumb-emoji">${item.emoji}</span>
+            <span class="thumb-label">Add photo</span>
+          </div>
+        </div>`;
+      }
+
+      const key = item.name.replace(/[^a-z0-9]/gi,'_');
       card.innerHTML = `
-        <div class="menu-img" style="background:${item.cat === 'sweet' ? '#FDE8E0' : '#EEF5E8'}">${item.emoji}</div>
+        ${thumbHTML}
         <div class="menu-card-body">
           <div class="menu-name">${item.name}</div>
+          <div class="menu-unit">${item.unit}</div>
           <div class="menu-price">Rs ${item.price.toLocaleString()}</div>
           <div class="qty-row">
-            <button class="qty-btn" onclick="changeQty('${item.name}', -1, this)">−</button>
-            <span class="qty-num" id="qty-${item.name.replace(/\s+/g,'_')}">${qty}</span>
-            <button class="qty-btn add-btn-label" onclick="changeQty('${item.name}', 1, this)">+ Add</button>
+            <button class="qty-btn" onclick="changeQty('${item.name}',-1,this)">−</button>
+            <span class="qty-num" id="qty-${key}">${qty}</span>
+            <button class="qty-btn add-btn-label" onclick="changeQty('${item.name}',1,this)">+ Add</button>
           </div>
         </div>`;
       grid.appendChild(card);
@@ -382,7 +545,7 @@
   function changeQty(name, delta, btn) {
     cart[name] = (cart[name] || 0) + delta;
     if (cart[name] <= 0) delete cart[name];
-    const key = name.replace(/\s+/g, '_');
+    const key = name.replace(/[^a-z0-9]/gi,'_');
     const el = document.getElementById('qty-' + key);
     if (el) el.textContent = cart[name] || 0;
     btn.classList.remove('pop-anim');
@@ -392,7 +555,7 @@
   }
 
   function updateCartBadge() {
-    const total = Object.values(cart).reduce((a, b) => a + b, 0);
+    const total = Object.values(cart).reduce((a,b) => a+b, 0);
     document.getElementById('cart-count').textContent = total;
     document.getElementById('checkout-btn').disabled = total === 0;
   }
@@ -409,10 +572,16 @@
     document.getElementById('cart-overlay').classList.add('open');
     document.getElementById('cart-drawer').classList.add('open');
   }
-
   function closeCart() {
     document.getElementById('cart-overlay').classList.remove('open');
     document.getElementById('cart-drawer').classList.remove('open');
+  }
+
+  function cartTotal() {
+    return Object.keys(cart).reduce((sum, name) => {
+      const item = menuItems.find(i => i.name === name);
+      return sum + (item ? item.price * cart[name] : 0);
+    }, 0);
   }
 
   function renderCartItems() {
@@ -423,14 +592,12 @@
       document.getElementById('cart-total-display').textContent = 'Rs 0';
       return;
     }
-    let total = 0;
     el.innerHTML = '';
     keys.forEach(name => {
       const item = menuItems.find(i => i.name === name);
       if (!item) return;
       const qty = cart[name];
       const sub = item.price * qty;
-      total += sub;
       const div = document.createElement('div');
       div.className = 'cart-item';
       div.innerHTML = `
@@ -440,13 +607,13 @@
           <div class="cart-item-price">Rs ${item.price.toLocaleString()} × ${qty} = Rs ${sub.toLocaleString()}</div>
         </div>
         <div class="cart-item-qty">
-          <button class="cq-btn" onclick="cartChangeQty('${name}', -1)">−</button>
+          <button class="cq-btn" onclick="cartChangeQty('${name}',-1)">−</button>
           <span style="font-size:13px;font-weight:700;min-width:16px;text-align:center;">${qty}</span>
-          <button class="cq-btn" onclick="cartChangeQty('${name}', 1)">+</button>
+          <button class="cq-btn" onclick="cartChangeQty('${name}',1)">+</button>
         </div>`;
       el.appendChild(div);
     });
-    document.getElementById('cart-total-display').textContent = 'Rs ' + total.toLocaleString();
+    document.getElementById('cart-total-display').textContent = 'Rs ' + cartTotal().toLocaleString();
   }
 
   function cartChangeQty(name, delta) {
@@ -454,8 +621,7 @@
     if (cart[name] <= 0) delete cart[name];
     updateCartBadge();
     renderCartItems();
-    // sync menu qty displays
-    const key = name.replace(/\s+/g, '_');
+    const key = name.replace(/[^a-z0-9]/gi,'_');
     const el = document.getElementById('qty-' + key);
     if (el) el.textContent = cart[name] || 0;
   }
@@ -465,28 +631,36 @@
     closeCart();
     document.getElementById('checkout-modal').classList.add('open');
   }
-
   function closeCheckout() {
     document.getElementById('checkout-modal').classList.remove('open');
     openCart();
   }
 
+  // Show/hide address field based on order type
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('c-type').addEventListener('change', function() {
+      document.getElementById('address-field').style.display = this.value === 'delivery' ? 'flex' : 'none';
+    });
+  });
+
   function placeOrder() {
     const name    = document.getElementById('c-name').value.trim();
     const phone   = document.getElementById('c-phone').value.trim();
+    const type    = document.getElementById('c-type').value;
     const address = document.getElementById('c-address').value.trim();
     const note    = document.getElementById('c-note').value.trim();
 
     document.getElementById('c-name').style.borderColor  = '';
     document.getElementById('c-phone').style.borderColor = '';
+    document.getElementById('c-address').style.borderColor = '';
 
-    if (!name || !phone) {
-      if (!name)  document.getElementById('c-name').style.borderColor  = '#B05070';
-      if (!phone) document.getElementById('c-phone').style.borderColor = '#B05070';
-      return;
-    }
+    let valid = true;
+    if (!name)  { document.getElementById('c-name').style.borderColor  = '#B05070'; valid=false; }
+    if (!phone) { document.getElementById('c-phone').style.borderColor = '#B05070'; valid=false; }
+    if (type === 'delivery' && !address) { document.getElementById('c-address').style.borderColor = '#B05070'; valid=false; }
+    if (!valid) return;
 
-    orderData = { name, phone, address, note };
+    orderData = { name, phone, type, address, note };
     document.getElementById('checkout-modal').classList.remove('open');
     showReceipt();
   }
@@ -495,11 +669,12 @@
   function showReceipt() {
     const now = new Date();
     document.getElementById('receipt-date').textContent =
-      now.toLocaleDateString('en-PK', { weekday:'long', year:'numeric', month:'long', day:'numeric' }) +
-      ' · ' + now.toLocaleTimeString('en-PK', { hour:'2-digit', minute:'2-digit' });
+      now.toLocaleDateString('en-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) +
+      ' · ' + now.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
 
     document.getElementById('r-name').textContent  = orderData.name;
     document.getElementById('r-phone').textContent = orderData.phone;
+    document.getElementById('r-type').textContent  = orderData.type === 'delivery' ? '🚴 Delivery' : '🏪 Pick-up';
 
     if (orderData.address) {
       document.getElementById('r-address-row').style.display = 'flex';
@@ -508,6 +683,39 @@
       document.getElementById('r-address-row').style.display = 'none';
     }
 
+    let subtotal = 0;
+    const itemsEl = document.getElementById('r-items');
+    itemsEl.innerHTML = '';
+    Object.keys(cart).forEach(name => {
+      const item = menuItems.find(i => i.name === name);
+      if (!item) return;
+      const sub = item.price * cart[name];
+      subtotal += sub;
+      const row = document.createElement('div');
+      row.className = 'receipt-row';
+      row.innerHTML = `<span class="receipt-row-name">${item.emoji} ${name} × ${cart[name]}</span><span class="receipt-row-price">Rs ${sub.toLocaleString()}</span>`;
+      itemsEl.appendChild(row);
+    });
+
+    document.getElementById('r-subtotal').textContent = 'Rs ' + subtotal.toLocaleString();
+
+    const delivRow = document.getElementById('r-delivery-row');
+    const delivNote = document.getElementById('r-delivery-note');
+    if (orderData.type === 'delivery') {
+      delivRow.style.display = 'flex';
+      document.getElementById('r-delivery-cost').textContent = 'TBD';
+      delivNote.textContent = '🚴 Free within 3 km · charges beyond 3 km will be confirmed on WhatsApp';
+      delivNote.style.display = 'block';
+    } else {
+      delivRow.style.display = 'none';
+      delivNote.style.display = 'none';
+    }
+
+    const totalLabel = orderData.type === 'delivery'
+      ? 'Rs ' + subtotal.toLocaleString() + ' + delivery'
+      : 'Rs ' + subtotal.toLocaleString();
+    document.getElementById('r-total').textContent = totalLabel;
+
     if (orderData.note) {
       document.getElementById('r-note-section').style.display = 'block';
       document.getElementById('r-note').textContent = orderData.note;
@@ -515,46 +723,35 @@
       document.getElementById('r-note-section').style.display = 'none';
     }
 
-    let total = 0;
-    const itemsEl = document.getElementById('r-items');
-    itemsEl.innerHTML = '';
-    Object.keys(cart).forEach(name => {
-      const item = menuItems.find(i => i.name === name);
-      if (!item) return;
-      const sub = item.price * cart[name];
-      total += sub;
-      const row = document.createElement('div');
-      row.className = 'receipt-row';
-      row.innerHTML = `<span>${item.emoji} ${name} × ${cart[name]}</span><span>Rs ${sub.toLocaleString()}</span>`;
-      itemsEl.appendChild(row);
-    });
-
-    document.getElementById('r-total').textContent = 'Rs ' + total.toLocaleString();
     document.getElementById('receipt-modal').classList.add('open');
   }
 
   // ── SEND TO WHATSAPP ──
   function sendToWhatsApp() {
     const now = new Date().toLocaleString('en-PK');
-    let msg = `🧁 *New Order — The Rustic Loaf*\n\n`;
+    let msg = `🧁 *New Order — Crunchic Baking Lab*\n\n`;
     msg += `👤 *Customer:* ${orderData.name}\n`;
     msg += `📱 *Phone:* ${orderData.phone}\n`;
+    msg += `📦 *Order type:* ${orderData.type === 'delivery' ? '🚴 Delivery' : '🏪 Pick-up'}\n`;
     if (orderData.address) msg += `📍 *Address:* ${orderData.address}\n`;
     msg += `\n🛒 *Order Details:*\n`;
-    let total = 0;
+    let subtotal = 0;
     Object.keys(cart).forEach(name => {
       const item = menuItems.find(i => i.name === name);
       if (!item) return;
       const sub = item.price * cart[name];
-      total += sub;
+      subtotal += sub;
       msg += `• ${item.emoji} ${name} × ${cart[name]} = Rs ${sub.toLocaleString()}\n`;
     });
-    msg += `\n💰 *Total: Rs ${total.toLocaleString()}*`;
+    msg += `\n💰 *Subtotal: Rs ${subtotal.toLocaleString()}*`;
+    if (orderData.type === 'delivery') {
+      msg += `\n🚴 *Delivery:* Free within 3 km · charges to be confirmed for farther distance`;
+    }
+    msg += `\n💳 *Total Payable: Rs ${subtotal.toLocaleString()}${orderData.type === 'delivery' ? ' + delivery charges (if applicable)' : ''}*`;
     if (orderData.note) msg += `\n\n📝 *Special requests:* ${orderData.note}`;
     msg += `\n\n🕐 _Ordered at: ${now}_`;
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
-    window.open(url, '_blank');
+    window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   }
 
   // ── NEW ORDER ──
@@ -562,24 +759,22 @@
     cart = {};
     orderData = {};
     document.getElementById('receipt-modal').classList.remove('open');
-    document.getElementById('c-name').value    = '';
-    document.getElementById('c-phone').value   = '';
-    document.getElementById('c-address').value = '';
-    document.getElementById('c-note').value    = '';
+    ['c-name','c-phone','c-address','c-note'].forEach(id => { document.getElementById(id).value=''; });
+    document.getElementById('c-type').value = 'pickup';
+    document.getElementById('address-field').style.display = 'none';
     updateCartBadge();
     renderMenu(currentCat);
   }
 
-  // ── WHATSAPP FAB ──
   function openWhatsApp() {
     window.open('https://wa.me/' + WHATSAPP_NUMBER, '_blank');
   }
-
   function scrollToId(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    document.getElementById(id).scrollIntoView({ behavior:'smooth' });
   }
 
   // Init
+  renderCategories();
   renderMenu('all');
 </script>
 </body>
