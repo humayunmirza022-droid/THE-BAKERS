@@ -12,7 +12,6 @@
     }
     body{font-family:Georgia,'Times New Roman',serif;background:var(--cream);color:var(--dk-brown);}
     .nav,.delivery-bar,.hero,.section,.story,.location,.footer{position:relative;z-index:1;}
-    /* NAV */
     .nav{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;
       background:var(--cream);border-bottom:2px solid var(--card-border);position:sticky;top:0;z-index:100;}
     .logo-area{display:flex;align-items:center;gap:12px;}
@@ -34,11 +33,9 @@
     .cart-btn:active{transform:scale(0.95);}
     .cart-count{background:#fff;color:var(--pink);border-radius:50%;width:20px;height:20px;
       display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;}
-    /* DELIVERY BAR */
     .delivery-bar{background:#FFF3CD;border-top:2px solid #E6C87A;border-bottom:2px solid #E6C87A;
       padding:10px 20px;text-align:center;font-size:13px;color:#7A5B00;font-weight:600;}
     .delivery-bar span{color:var(--pink);}
-    /* HERO */
     .hero{background:var(--cream);padding:64px 32px 52px;text-align:center;border-bottom:2px solid var(--card-border);}
     .hero-badge{display:inline-block;background:#F0C8C0;color:#111;font-size:13px;padding:5px 16px;
       border-radius:24px;margin-bottom:16px;border:1.5px solid var(--card-border);}
@@ -51,8 +48,6 @@
     .btn-out{background:transparent;color:var(--brown);border:2px solid var(--card-border);
       padding:12px 28px;border-radius:30px;font-size:14px;cursor:pointer;transition:transform .15s,background .15s;}
     .btn-out:hover{background:var(--blush);}
-    @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.18)}70%{transform:scale(0.94)}100%{transform:scale(1)}}
-    /* MENU */
     .section{padding:40px 32px;background:#FFF9F6;}
     .section-title{font-size:22px;font-weight:bold;color:var(--dk-brown);margin-bottom:6px;}
     .section-sub{font-size:14px;color:var(--mid-brown);margin-bottom:22px;}
@@ -62,26 +57,12 @@
     .cat-btn:active{transform:scale(0.92);}
     .cat-btn.active{background:var(--pink);color:#fff;border-color:var(--pink);}
     .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;}
-    /* MENU CARD */
     .menu-card{background:#FFF;border:2px solid var(--card-border);border-radius:16px;
       overflow:hidden;transition:transform .18s,border-color .15s;}
     .menu-card:hover{transform:translateY(-4px);border-color:var(--pink);}
-    /*
-    =====================================================
-    ITEM PHOTOS — drop your images in an "Items" folder:
-      Items/Plain Tea Cake.jpg
-      Items/Almond Cake.jpg
-      Items/Brownie Sundae.jpg
-      ... (filename = exact item name + .jpg)
-    =====================================================
-    */
     .menu-thumb{width:100%;height:120px;overflow:hidden;background:#F5EDE8;
       display:flex;align-items:center;justify-content:center;}
     .menu-thumb img{width:100%;height:100%;object-fit:cover;display:block;}
-    .menu-thumb-fallback{width:100%;height:100%;display:flex;flex-direction:column;
-      align-items:center;justify-content:center;gap:6px;background:#F5EDE8;}
-    .menu-thumb-fallback svg{width:40px;height:40px;opacity:.22;}
-    .menu-thumb-fallback span{font-size:9px;color:rgba(0,0,0,.28);text-transform:uppercase;letter-spacing:.5px;}
     .menu-card-body{padding:12px 14px 14px;}
     .menu-name{font-size:13px;font-weight:bold;color:var(--dk-brown);line-height:1.35;}
     .menu-unit{font-size:11px;color:var(--mid-brown);margin:2px 0;}
@@ -96,28 +77,32 @@
       padding:5px 0;border-radius:20px;font-size:11px;cursor:pointer;font-weight:600;
       transition:background .15s,border-color .15s;text-align:center;}
     .add-btn-label:hover{background:#F0C8C0;border-color:var(--pink);}
+
+    /* VARIANT SELECTOR */
+    .variant-tabs{display:flex;gap:4px;margin-bottom:8px;}
+    .variant-tab{flex:1;padding:4px 0;border-radius:16px;border:1.5px solid var(--card-border);
+      font-size:10px;font-weight:700;cursor:pointer;background:var(--cream);color:var(--dk-brown);
+      transition:background .15s,border-color .15s;text-align:center;line-height:1.3;}
+    .variant-tab.active{background:var(--pink);color:#fff;border-color:var(--pink);}
+    .variant-tab:hover:not(.active){background:#F0C8C0;border-color:var(--pink);}
+
     hr.divider{border:none;border-top:2px solid var(--card-border);}
-    /* STORY */
     .story{background:var(--cream);padding:40px 32px;display:flex;gap:24px;align-items:flex-start;}
     .story-icon{width:56px;height:56px;background:#F0C8C0;border-radius:50%;display:flex;
       align-items:center;justify-content:center;font-size:26px;flex-shrink:0;border:2px solid var(--card-border);}
     .story h2{font-size:20px;font-weight:bold;color:var(--dk-brown);margin-bottom:10px;}
     .story p{font-size:14px;color:var(--brown);line-height:1.7;}
-    /* LOCATION */
     .location{padding:40px 32px;background:var(--cream);}
     .location-card{background:#FFF;border:2px solid var(--card-border);border-radius:16px;
       padding:22px;display:flex;flex-direction:column;gap:14px;max-width:480px;}
     .loc-row{display:flex;align-items:flex-start;gap:12px;font-size:14px;color:var(--brown);}
-    /* FOOTER */
     .footer{text-align:center;padding:20px;font-size:13px;color:var(--mid-brown);
       background:var(--cream);border-top:2px solid var(--card-border);}
-    /* WHATSAPP FAB */
     .wa-fab{position:fixed;bottom:28px;right:28px;width:56px;height:56px;background:#25D366;
       border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;
       z-index:999;transition:transform .15s;box-shadow:0 3px 10px rgba(0,0,0,.2);}
     .wa-fab:hover{transform:scale(1.1);}
     .wa-fab svg{width:30px;height:30px;fill:#fff;}
-    /* CART */
     .cart-overlay{position:fixed;inset:0;background:rgba(74,36,16,.35);z-index:500;display:none;}
     .cart-overlay.open{display:block;}
     .cart-drawer{position:fixed;top:0;right:0;width:360px;max-width:95vw;height:100%;
@@ -135,7 +120,6 @@
     .cart-item-thumb{width:44px;height:44px;border-radius:10px;overflow:hidden;flex-shrink:0;
       background:#F5EDE8;display:flex;align-items:center;justify-content:center;}
     .cart-item-thumb img{width:100%;height:100%;object-fit:cover;}
-    .cart-item-thumb-fallback{font-size:22px;}
     .cart-item-info{flex:1;min-width:0;}
     .cart-item-name{font-size:13px;font-weight:bold;color:var(--dk-brown);}
     .cart-item-price{font-size:12px;color:var(--mid-brown);margin-top:2px;}
@@ -154,7 +138,6 @@
     .checkout-btn:hover{background:var(--pink-dark);}
     .checkout-btn:active{transform:scale(0.97);}
     .checkout-btn:disabled{background:#C9A0A0;cursor:default;}
-    /* MODALS */
     .modal-overlay{position:fixed;inset:0;background:rgba(74,36,16,.45);z-index:700;display:none;
       align-items:center;justify-content:center;padding:16px;}
     .modal-overlay.open{display:flex;}
@@ -177,13 +160,9 @@
     .modal-confirm{flex:2;background:var(--pink);color:#fff;border:none;padding:11px;
       border-radius:24px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;}
     .modal-confirm:hover{background:var(--pink-dark);}
-    /* RECEIPT */
     .receipt{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;
       width:440px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
     .receipt-header{text-align:center;margin-bottom:18px;border-bottom:2px dashed var(--card-border);padding-bottom:16px;}
-    .receipt-logo-img{width:56px;height:56px;border-radius:12px;background:#F0C8C0;
-      border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;
-      font-size:9px;color:var(--mid-brown);text-align:center;margin:0 auto 8px;line-height:1.3;}
     .receipt-logo{font-size:20px;font-weight:bold;color:var(--dk-brown);}
     .receipt-logo span{color:var(--pink);}
     .receipt-tagline{font-size:11px;color:var(--mid-brown);letter-spacing:.4px;text-transform:uppercase;margin-top:2px;}
@@ -249,7 +228,7 @@
 </nav>
 
 <div class="delivery-bar">
-  🚴 <span>Delivery charges apply ask us on WhatsApp</span>
+  🚴 <span>Delivery charges apply — ask us on WhatsApp</span>
 </div>
 
 <section class="hero">
@@ -378,21 +357,13 @@
 </div>
 
 <script>
-// ════════════════════════════════════════════════
-//  YOUR WHATSAPP NUMBER (no + or spaces)
-// ════════════════════════════════════════════════
 const WHATSAPP_NUMBER = '923378637801';
 
-// ════════════════════════════════════════════════
-//  HOW TO ADD PHOTOS TO MENU CARDS:
-//
-//  1. Create a folder called  Items  next to this HTML file
-//  2. Name each photo exactly like the item name below
-//     e.g.  Items/Plain Tea Cake.jpg   (or .jpeg)
-//           Items/Almond Cake.jpg      (or .jpeg)
-//           Items/Brownie Sundae.jpg   (or .jpeg)
-//  3. Save and refresh — photos appear automatically!
-// ════════════════════════════════════════════════
+// ─── MENU DATA ───────────────────────────────────────────────────────────────
+// Items with variants have a `variants` array: [{label, price, unit, key}]
+// key is the cart key used (must be unique across all variants)
+// Regular items have price/unit as before.
+
 const menuItems = [
   // CAKES
   { name:'Plain Tea Cake',            price:1600, unit:'2 Pound Cake', cat:'cakes'    },
@@ -409,7 +380,7 @@ const menuItems = [
   // DESSERTS
   { name:'Brownie Sundae',            price:300,  unit:'Each',         cat:'desserts' },
   { name:'Crunchic Brownie',          price:300,  unit:'Each',         cat:'desserts' },
-  { name:'Whipped Pineapple Delight', price:300,  unit:'Each',         cat:'desserts' },
+  { name:'Whipped Pineapple Dessert', price:300,  unit:'Each',         cat:'desserts' },
   { name:'Oreo Sundae',               price:300,  unit:'Each',         cat:'desserts' },
   { name:'Dairy Milk Sundae',         price:300,  unit:'Each',         cat:'desserts' },
   { name:'Cinnamon Rolls',            price:300,  unit:'Each',         cat:'desserts' },
@@ -419,18 +390,66 @@ const menuItems = [
   { name:'Chocolate Cookies',         price:300,  unit:'Each',         cat:'desserts' },
   { name:'Double Chocolate Cookies',  price:300,  unit:'Each',         cat:'desserts' },
   { name:'Oreo Cookies',              price:300,  unit:'Each',         cat:'desserts' },
-  // CUPCAKES & MUFFINS
-  { name:'Chocolate Cupcakes',        price:1200, unit:'6 Cupcakes',   cat:'cupcakes' },
-  { name:'Vanilla Cupcakes',          price:1200, unit:'6 Cupcakes',   cat:'cupcakes' },
-  { name:'Red Velvet Cupcakes',       price:1200, unit:'6 Cupcakes',   cat:'cupcakes' },
-  { name:'Oreo Cupcakes',             price:1200, unit:'6 Cupcakes',   cat:'cupcakes' },
-  { name:'Pizza Muffins',             price:1200, unit:'6 Pieces',     cat:'cupcakes' },
-  // SAVOURY
-  { name:'Pizza Bread',               price:800,  unit:'Each',         cat:'savoury'  },
-  { name:'Lasagna',                   price:800,  unit:'Each',         cat:'savoury'  },
-  { name:'Club Sandwich',             price:1000, unit:'6 Sandwiches', cat:'savoury'  },
-  { name:'Chicken Buns',              price:1000, unit:'6 Buns',       cat:'savoury'  },
-  { name:'Cheese Buns',               price:1000, unit:'6 Buns',       cat:'savoury'  },
+  // CUPCAKES & MUFFINS — with variants
+  {
+    name:'Chocolate Cupcakes', cat:'cupcakes',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Cupcake', key:'Chocolate Cupcakes (x1)' },
+      { label:'6 Pack', price:1200, unit:'6 Cupcakes', key:'Chocolate Cupcakes (x6)' },
+    ]
+  },
+  {
+    name:'Vanilla Cupcakes', cat:'cupcakes',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Cupcake', key:'Vanilla Cupcakes (x1)' },
+      { label:'6 Pack', price:1200, unit:'6 Cupcakes', key:'Vanilla Cupcakes (x6)' },
+    ]
+  },
+  {
+    name:'Red Velvet Cupcakes', cat:'cupcakes',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Cupcake', key:'Red Velvet Cupcakes (x1)' },
+      { label:'6 Pack', price:1200, unit:'6 Cupcakes', key:'Red Velvet Cupcakes (x6)' },
+    ]
+  },
+  {
+    name:'Oreo Cupcakes', cat:'cupcakes',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Cupcake', key:'Oreo Cupcakes (x1)' },
+      { label:'6 Pack', price:1200, unit:'6 Cupcakes', key:'Oreo Cupcakes (x6)' },
+    ]
+  },
+  {
+    name:'Pizza Muffins', cat:'cupcakes',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Muffin', key:'Pizza Muffins (x1)' },
+      { label:'6 Pack', price:1200, unit:'6 Muffins', key:'Pizza Muffins (x6)' },
+    ]
+  },
+  // SAVOURY — with variants for sandwich/buns
+  { name:'Pizza Bread',   price:800, unit:'Each', cat:'savoury' },
+  { name:'Lasagna',       price:800, unit:'Each', cat:'savoury' },
+  {
+    name:'Club Sandwich', cat:'savoury',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Sandwich', key:'Club Sandwich (x1)' },
+      { label:'6 Pack', price:1000, unit:'6 Sandwiches', key:'Club Sandwich (x6)' },
+    ]
+  },
+  {
+    name:'Chicken Buns', cat:'savoury',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Bun', key:'Chicken Buns (x1)' },
+      { label:'6 Pack', price:1000, unit:'6 Buns', key:'Chicken Buns (x6)' },
+    ]
+  },
+  {
+    name:'Cheese Buns', cat:'savoury',
+    variants:[
+      { label:'1 Each', price:200, unit:'1 Bun', key:'Cheese Buns (x1)' },
+      { label:'6 Pack', price:1000, unit:'6 Buns', key:'Cheese Buns (x6)' },
+    ]
+  },
   // SIGNATURE SPECIALS
   { name:'Crunchic Matilda Cake',     price:1800, unit:'Special',      cat:'specials' },
   { name:'Crunchic Brownie Sundae',   price:1800, unit:'Special',      cat:'specials' },
@@ -439,6 +458,23 @@ const menuItems = [
   { name:'Coffee Crunch Cake',        price:1800, unit:'Special',      cat:'specials' },
   { name:'Cinnamon Rolls (6 pcs)',    price:1200, unit:'6 Rolls',      cat:'specials' },
 ];
+
+// Track which variant tab is selected per item (by item name)
+const selectedVariant = {};
+
+// Build a lookup: cartKey -> {name, price, unit}
+function getCartKeyInfo(key) {
+  for (const item of menuItems) {
+    if (item.variants) {
+      for (const v of item.variants) {
+        if (v.key === key) return { name: v.key, price: v.price, unit: v.unit, displayName: item.name };
+      }
+    } else {
+      if (item.name === key) return { name: item.name, price: item.price, unit: item.unit, displayName: item.name };
+    }
+  }
+  return null;
+}
 
 const categories = [
   { id:'all',      label:'All' },
@@ -468,40 +504,78 @@ function renderMenu(cat) {
   const grid = document.getElementById('menu-grid');
   grid.innerHTML = '';
   menuItems.filter(i => cat === 'all' || i.cat === cat).forEach(item => {
-    const qty = cart[item.name] || 0;
-    const key = item.name.replace(/[^a-z0-9]/gi, '_');
     const card = document.createElement('div');
     card.className = 'menu-card';
-    card.innerHTML = `
-      <div class="menu-thumb">
-        <img src="Items/${item.name}.jpg" alt="${item.name}"
-          onerror="this.onerror=null;this.src='Items/${item.name}.jpeg'">
-      </div>
-      <div class="menu-card-body">
-        <div class="menu-name">${item.name}</div>
-        <div class="menu-unit">${item.unit}</div>
-        <div class="menu-price">Rs ${item.price.toLocaleString()}</div>
-        <div class="qty-row">
-          <button class="qty-btn" onclick="changeQty('${item.name}',-1,this)">−</button>
-          <span class="qty-num" id="qty-${key}">${qty}</span>
-          <button class="qty-btn add-btn-label" onclick="changeQty('${item.name}',1,this)">+ Add</button>
+
+    if (item.variants) {
+      // Variant card
+      if (!selectedVariant[item.name]) selectedVariant[item.name] = 0;
+      const vi = selectedVariant[item.name];
+      const v = item.variants[vi];
+      const qty = cart[v.key] || 0;
+      const safeKey = v.key.replace(/[^a-z0-9]/gi, '_');
+
+      const tabsHTML = item.variants.map((vt, idx) =>
+        `<button class="variant-tab${idx === vi ? ' active' : ''}"
+          onclick="selectVariant('${item.name}', ${idx})">${vt.label}</button>`
+      ).join('');
+
+      card.innerHTML = `
+        <div class="menu-thumb">
+          <img src="Items/${item.name}.jpg" alt="${item.name}"
+            onerror="this.onerror=null;this.src='Items/${item.name}.jpeg'">
         </div>
-      </div>`;
+        <div class="menu-card-body">
+          <div class="menu-name">${item.name}</div>
+          <div class="variant-tabs">${tabsHTML}</div>
+          <div class="menu-unit" id="unit-${safeKey}">${v.unit}</div>
+          <div class="menu-price" id="price-${safeKey}">Rs ${v.price.toLocaleString()}</div>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty('${v.key}',-1,this)">−</button>
+            <span class="qty-num" id="qty-${safeKey}">${qty}</span>
+            <button class="qty-btn add-btn-label" onclick="changeQty('${v.key}',1,this)">+ Add</button>
+          </div>
+        </div>`;
+    } else {
+      // Regular card
+      const qty = cart[item.name] || 0;
+      const key = item.name.replace(/[^a-z0-9]/gi, '_');
+      card.innerHTML = `
+        <div class="menu-thumb">
+          <img src="Items/${item.name}.jpg" alt="${item.name}"
+            onerror="this.onerror=null;this.src='Items/${item.name}.jpeg'">
+        </div>
+        <div class="menu-card-body">
+          <div class="menu-name">${item.name}</div>
+          <div class="menu-unit">${item.unit}</div>
+          <div class="menu-price">Rs ${item.price.toLocaleString()}</div>
+          <div class="qty-row">
+            <button class="qty-btn" onclick="changeQty('${item.name}',-1,this)">−</button>
+            <span class="qty-num" id="qty-${key}">${qty}</span>
+            <button class="qty-btn add-btn-label" onclick="changeQty('${item.name}',1,this)">+ Add</button>
+          </div>
+        </div>`;
+    }
     grid.appendChild(card);
   });
 }
 
-function changeQty(name, delta, btn) {
-  cart[name] = (cart[name] || 0) + delta;
-  if (cart[name] <= 0) delete cart[name];
-  const el = document.getElementById('qty-' + name.replace(/[^a-z0-9]/gi,'_'));
-  if (el) el.textContent = cart[name] || 0;
-  btn.classList.remove('pop-anim'); void btn.offsetWidth; btn.classList.add('pop-anim');
+function selectVariant(itemName, idx) {
+  selectedVariant[itemName] = idx;
+  renderMenu(currentCat);
+}
+
+function changeQty(cartKey, delta, btn) {
+  cart[cartKey] = (cart[cartKey] || 0) + delta;
+  if (cart[cartKey] <= 0) delete cart[cartKey];
+  const safeKey = cartKey.replace(/[^a-z0-9]/gi, '_');
+  const el = document.getElementById('qty-' + safeKey);
+  if (el) el.textContent = cart[cartKey] || 0;
   updateCartBadge();
 }
 
 function updateCartBadge() {
-  const total = Object.values(cart).reduce((a,b) => a+b, 0);
+  const total = Object.values(cart).reduce((a, b) => a + b, 0);
   document.getElementById('cart-count').textContent = total;
   document.getElementById('checkout-btn').disabled = total === 0;
 }
@@ -516,42 +590,51 @@ function openCart()  { renderCartItems(); document.getElementById('cart-overlay'
 function closeCart() { document.getElementById('cart-overlay').classList.remove('open'); document.getElementById('cart-drawer').classList.remove('open'); }
 
 function cartTotal() {
-  return Object.keys(cart).reduce((s,n) => { const i = menuItems.find(x => x.name===n); return s+(i?i.price*cart[n]:0); }, 0);
+  return Object.keys(cart).reduce((s, key) => {
+    const info = getCartKeyInfo(key);
+    return s + (info ? info.price * cart[key] : 0);
+  }, 0);
 }
 
 function renderCartItems() {
   const el = document.getElementById('cart-items-list');
   const keys = Object.keys(cart);
-  if (!keys.length) { el.innerHTML='<div class="cart-empty">Your cart is empty.<br>Add some items from the menu!</div>'; document.getElementById('cart-total-display').textContent='Rs 0'; return; }
+  if (!keys.length) {
+    el.innerHTML = '<div class="cart-empty">Your cart is empty.<br>Add some items from the menu!</div>';
+    document.getElementById('cart-total-display').textContent = 'Rs 0';
+    return;
+  }
   el.innerHTML = '';
-  keys.forEach(name => {
-    const item = menuItems.find(i => i.name===name); if (!item) return;
-    const qty=cart[name], sub=item.price*qty;
-    const div = document.createElement('div'); div.className='cart-item';
+  keys.forEach(key => {
+    const info = getCartKeyInfo(key); if (!info) return;
+    const qty = cart[key], sub = info.price * qty;
+    const div = document.createElement('div'); div.className = 'cart-item';
+    const imgName = info.displayName || key;
     div.innerHTML = `
       <div class="cart-item-thumb">
-        <img src="Items/${name}.jpg" alt="${name}" onerror="this.onerror=null;this.src='Items/${name}.jpeg'">
+        <img src="Items/${imgName}.jpg" alt="${key}" onerror="this.onerror=null;this.src='Items/${imgName}.jpeg'">
       </div>
       <div class="cart-item-info">
-        <div class="cart-item-name">${name}</div>
-        <div class="cart-item-price">Rs ${item.price.toLocaleString()} × ${qty} = Rs ${sub.toLocaleString()}</div>
+        <div class="cart-item-name">${key}</div>
+        <div class="cart-item-price">Rs ${info.price.toLocaleString()} × ${qty} = Rs ${sub.toLocaleString()}</div>
       </div>
       <div class="cart-item-qty">
-        <button class="cq-btn" onclick="cartChangeQty('${name}',-1)">−</button>
+        <button class="cq-btn" onclick="cartChangeQty('${key}',-1)">−</button>
         <span style="font-size:13px;font-weight:700;min-width:16px;text-align:center;">${qty}</span>
-        <button class="cq-btn" onclick="cartChangeQty('${name}',1)">+</button>
+        <button class="cq-btn" onclick="cartChangeQty('${key}',1)">+</button>
       </div>`;
     el.appendChild(div);
   });
   document.getElementById('cart-total-display').textContent = 'Rs ' + cartTotal().toLocaleString();
 }
 
-function cartChangeQty(name, delta) {
-  cart[name] = (cart[name]||0)+delta;
-  if (cart[name]<=0) delete cart[name];
+function cartChangeQty(key, delta) {
+  cart[key] = (cart[key] || 0) + delta;
+  if (cart[key] <= 0) delete cart[key];
   updateCartBadge(); renderCartItems();
-  const el = document.getElementById('qty-'+name.replace(/[^a-z0-9]/gi,'_'));
-  if (el) el.textContent = cart[name]||0;
+  const safeKey = key.replace(/[^a-z0-9]/gi, '_');
+  const el = document.getElementById('qty-' + safeKey);
+  if (el) el.textContent = cart[key] || 0;
 }
 
 function openCheckout()  { closeCart(); document.getElementById('checkout-modal').classList.add('open'); }
@@ -559,82 +642,87 @@ function closeCheckout() { document.getElementById('checkout-modal').classList.r
 
 document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('c-type').addEventListener('change', function(){
-    document.getElementById('address-field').style.display = this.value==='delivery' ? 'flex' : 'none';
+    document.getElementById('address-field').style.display = this.value === 'delivery' ? 'flex' : 'none';
   });
 });
 
 function placeOrder() {
-  const name=document.getElementById('c-name').value.trim();
-  const phone=document.getElementById('c-phone').value.trim();
-  const type=document.getElementById('c-type').value;
-  const address=document.getElementById('c-address').value.trim();
-  const note=document.getElementById('c-note').value.trim();
-  ['c-name','c-phone','c-address'].forEach(id => document.getElementById(id).style.borderColor='');
-  let valid=true;
-  if(!name)  { document.getElementById('c-name').style.borderColor='#B05070'; valid=false; }
-  if(!phone) { document.getElementById('c-phone').style.borderColor='#B05070'; valid=false; }
-  if(type==='delivery'&&!address){ document.getElementById('c-address').style.borderColor='#B05070'; valid=false; }
-  if(!valid) return;
-  orderData={name,phone,type,address,note};
+  const name = document.getElementById('c-name').value.trim();
+  const phone = document.getElementById('c-phone').value.trim();
+  const type = document.getElementById('c-type').value;
+  const address = document.getElementById('c-address').value.trim();
+  const note = document.getElementById('c-note').value.trim();
+  ['c-name','c-phone','c-address'].forEach(id => document.getElementById(id).style.borderColor = '');
+  let valid = true;
+  if (!name)  { document.getElementById('c-name').style.borderColor = '#B05070'; valid = false; }
+  if (!phone) { document.getElementById('c-phone').style.borderColor = '#B05070'; valid = false; }
+  if (type === 'delivery' && !address) { document.getElementById('c-address').style.borderColor = '#B05070'; valid = false; }
+  if (!valid) return;
+  orderData = { name, phone, type, address, note };
   document.getElementById('checkout-modal').classList.remove('open');
   showReceipt();
 }
 
 function showReceipt() {
-  const now=new Date();
-  document.getElementById('receipt-date').textContent=now.toLocaleDateString('en-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'})+' · '+now.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
-  document.getElementById('r-name').textContent=orderData.name;
-  document.getElementById('r-phone').textContent=orderData.phone;
-  document.getElementById('r-type').textContent=orderData.type==='delivery'?'🚴 Delivery':'🏪 Pick-up';
-  if(orderData.address){document.getElementById('r-address-row').style.display='flex';document.getElementById('r-address').textContent=orderData.address;}
-  else document.getElementById('r-address-row').style.display='none';
-  let subtotal=0;
-  const itemsEl=document.getElementById('r-items'); itemsEl.innerHTML='';
-  Object.keys(cart).forEach(name=>{
-    const item=menuItems.find(i=>i.name===name); if(!item) return;
-    const sub=item.price*cart[name]; subtotal+=sub;
-    const row=document.createElement('div'); row.className='receipt-row';
-    row.innerHTML=`<span class="receipt-row-name">${name} × ${cart[name]}</span><span class="receipt-row-price">Rs ${sub.toLocaleString()}</span>`;
+  const now = new Date();
+  document.getElementById('receipt-date').textContent = now.toLocaleDateString('en-PK',{weekday:'long',year:'numeric',month:'long',day:'numeric'}) + ' · ' + now.toLocaleTimeString('en-PK',{hour:'2-digit',minute:'2-digit'});
+  document.getElementById('r-name').textContent = orderData.name;
+  document.getElementById('r-phone').textContent = orderData.phone;
+  document.getElementById('r-type').textContent = orderData.type === 'delivery' ? '🚴 Delivery' : '🏪 Pick-up';
+  if (orderData.address) { document.getElementById('r-address-row').style.display = 'flex'; document.getElementById('r-address').textContent = orderData.address; }
+  else document.getElementById('r-address-row').style.display = 'none';
+
+  let subtotal = 0;
+  const itemsEl = document.getElementById('r-items'); itemsEl.innerHTML = '';
+  Object.keys(cart).forEach(key => {
+    const info = getCartKeyInfo(key); if (!info) return;
+    const sub = info.price * cart[key]; subtotal += sub;
+    const row = document.createElement('div'); row.className = 'receipt-row';
+    row.innerHTML = `<span class="receipt-row-name">${key} × ${cart[key]}</span><span class="receipt-row-price">Rs ${sub.toLocaleString()}</span>`;
     itemsEl.appendChild(row);
   });
-  document.getElementById('r-subtotal').textContent='Rs '+subtotal.toLocaleString();
-  const drow=document.getElementById('r-delivery-row'),dnote=document.getElementById('r-delivery-note');
-  if(orderData.type==='delivery'){drow.style.display='flex';document.getElementById('r-delivery-cost').textContent='TBD';dnote.textContent='🚴 charges confirmed on WhatsApp';dnote.style.display='block';}
-  else{drow.style.display='none';dnote.style.display='none';}
-  document.getElementById('r-total').textContent=orderData.type==='delivery'?'Rs '+subtotal.toLocaleString()+' + delivery':'Rs '+subtotal.toLocaleString();
-  if(orderData.note){document.getElementById('r-note-section').style.display='block';document.getElementById('r-note').textContent=orderData.note;}
-  else document.getElementById('r-note-section').style.display='none';
+  document.getElementById('r-subtotal').textContent = 'Rs ' + subtotal.toLocaleString();
+  const drow = document.getElementById('r-delivery-row'), dnote = document.getElementById('r-delivery-note');
+  if (orderData.type === 'delivery') { drow.style.display = 'flex'; document.getElementById('r-delivery-cost').textContent = 'TBD'; dnote.textContent = '🚴 charges confirmed on WhatsApp'; dnote.style.display = 'block'; }
+  else { drow.style.display = 'none'; dnote.style.display = 'none'; }
+  document.getElementById('r-total').textContent = orderData.type === 'delivery' ? 'Rs ' + subtotal.toLocaleString() + ' + delivery' : 'Rs ' + subtotal.toLocaleString();
+  if (orderData.note) { document.getElementById('r-note-section').style.display = 'block'; document.getElementById('r-note').textContent = orderData.note; }
+  else document.getElementById('r-note-section').style.display = 'none';
   document.getElementById('receipt-modal').classList.add('open');
 }
 
 function sendToWhatsApp() {
-  const now=new Date().toLocaleString('en-PK');
-  let msg=`🧁 *New Order — Crunchic Baking Lab*\n\n`;
-  msg+=`👤 *Customer:* ${orderData.name}\n📱 *Phone:* ${orderData.phone}\n`;
-  msg+=`📦 *Order type:* ${orderData.type==='delivery'?'🚴 Delivery':'🏪 Pick-up'}\n`;
-  if(orderData.address) msg+=`📍 *Address:* ${orderData.address}\n`;
-  msg+=`\n🛒 *Order Details:*\n`;
-  let subtotal=0;
-  Object.keys(cart).forEach(name=>{const item=menuItems.find(i=>i.name===name);if(!item)return;const sub=item.price*cart[name];subtotal+=sub;msg+=`• ${name} × ${cart[name]} = Rs ${sub.toLocaleString()}\n`;});
-  msg+=`\n💰 *Subtotal: Rs ${subtotal.toLocaleString()}*`;
-  if(orderData.type==='delivery') msg+=`\n🚴 *Delivery:* F  charges confirmed for farther`;
-  msg+=`\n💳 *Total Payable: Rs ${subtotal.toLocaleString()}${orderData.type==='delivery'?' + delivery charges (if applicable)':''}*`;
-  if(orderData.note) msg+=`\n\n📝 *Special requests:* ${orderData.note}`;
-  msg+=`\n\n🕐 _Ordered at: ${now}_`;
-  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`,'_blank');
+  const now = new Date().toLocaleString('en-PK');
+  let msg = `🧁 *New Order — Crunchic Baking Lab*\n\n`;
+  msg += `👤 *Customer:* ${orderData.name}\n📱 *Phone:* ${orderData.phone}\n`;
+  msg += `📦 *Order type:* ${orderData.type === 'delivery' ? '🚴 Delivery' : '🏪 Pick-up'}\n`;
+  if (orderData.address) msg += `📍 *Address:* ${orderData.address}\n`;
+  msg += `\n🛒 *Order Details:*\n`;
+  let subtotal = 0;
+  Object.keys(cart).forEach(key => {
+    const info = getCartKeyInfo(key); if (!info) return;
+    const sub = info.price * cart[key]; subtotal += sub;
+    msg += `• ${key} × ${cart[key]} = Rs ${sub.toLocaleString()}\n`;
+  });
+  msg += `\n💰 *Subtotal: Rs ${subtotal.toLocaleString()}*`;
+  if (orderData.type === 'delivery') msg += `\n🚴 *Delivery:* Charges confirmed on WhatsApp`;
+  msg += `\n💳 *Total Payable: Rs ${subtotal.toLocaleString()}${orderData.type === 'delivery' ? ' + delivery charges' : ''}*`;
+  if (orderData.note) msg += `\n\n📝 *Special requests:* ${orderData.note}`;
+  msg += `\n\n🕐 _Ordered at: ${now}_`;
+  window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
 function newOrder() {
-  cart={}; orderData={};
+  cart = {}; orderData = {};
   document.getElementById('receipt-modal').classList.remove('open');
-  ['c-name','c-phone','c-address','c-note'].forEach(id=>document.getElementById(id).value='');
-  document.getElementById('c-type').value='pickup';
-  document.getElementById('address-field').style.display='none';
+  ['c-name','c-phone','c-address','c-note'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('c-type').value = 'pickup';
+  document.getElementById('address-field').style.display = 'none';
   updateCartBadge(); renderMenu(currentCat);
 }
 
-function openWhatsApp(){window.open('https://wa.me/'+WHATSAPP_NUMBER,'_blank');}
-function scrollToId(id){document.getElementById(id).scrollIntoView({behavior:'smooth'});}
+function openWhatsApp() { window.open('https://wa.me/' + WHATSAPP_NUMBER, '_blank'); }
+function scrollToId(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
 
 renderCategories();
 renderMenu('all');
