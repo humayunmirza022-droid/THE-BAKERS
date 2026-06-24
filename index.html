@@ -235,8 +235,7 @@
 
 <nav class="nav">
   <div class="logo-area">
-    <!-- YOUR LOGO — replace div below with: <img src="your-logo.png" style="width:52px;height:52px;border-radius:12px;object-fit:contain;"> -->
-    <div class="logo-img-placeholder">Your<br>Logo</div>
+    <img src="your-logo.png" alt="Logo" style="width:52px;height:52px;border-radius:12px;object-fit:contain;">
     <div class="logo-text">
       <span class="logo-name"><span>Crunchic</span> Baking Lab</span>
       <span class="logo-tagline">Freshly Baked with Love &amp; Crunch</span>
@@ -292,7 +291,6 @@
   <div class="location-card">
     <div class="loc-row">📍 <span>Saddar, Rawalpindi, Punjab — walk-ins welcome</span></div>
     <div class="loc-row">🕐 <span>Mon–Sat: 7:30 am – 8:00 pm &nbsp;|&nbsp; Sun: 8:00 am – 2:00 pm</span></div>
-    <div class="loc-row">🚴 <span>Free delivery within 3 km · charges apply beyond</span></div>
     <div class="loc-row">💬 <span>+92 300 0000000</span></div>
     <div class="loc-row">✉️ <span>hello@crunchicbakinglab.pk</span></div>
   </div>
@@ -313,7 +311,6 @@
   <div class="cart-items" id="cart-items-list"></div>
   <div class="cart-footer">
     <div class="cart-total-row"><span>Subtotal</span><span id="cart-total-display">Rs 0</span></div>
-    <div class="cart-delivery-note">🚴 Free delivery within 3 km · charges apply</div>
     <button class="checkout-btn" id="checkout-btn" onclick="openCheckout()" disabled>Checkout →</button>
   </div>
 </div>
@@ -350,8 +347,7 @@
 <div class="modal-overlay" id="receipt-modal">
   <div class="receipt">
     <div class="receipt-header">
-      <!-- YOUR RECEIPT LOGO — replace div below with: <img src="your-logo.png" style="width:56px;height:56px;border-radius:12px;object-fit:contain;margin:0 auto 8px;display:block;"> -->
-      <div class="receipt-logo-img">Your<br>Logo</div>
+      <img src="your-logo.png" alt="Logo" style="width:56px;height:56px;border-radius:12px;object-fit:contain;margin:0 auto 8px;display:block;">
       <div class="receipt-logo"><span>Crunchic</span> Baking Lab</div>
       <div class="receipt-tagline">Freshly Baked with Love &amp; Crunch</div>
       <div class="receipt-addr">Saddar, Rawalpindi · hello@crunchicbakinglab.pk</div>
@@ -397,13 +393,10 @@ const WHATSAPP_NUMBER = '923378637801';
 //
 //  1. Create a folder called  Items  next to this HTML file
 //  2. Name each photo exactly like the item name below
-//     e.g.  Items/Plain Tea Cake.jpg
-//           Items/Almond Cake.jpg
-//           Items/Brownie Sundae.jpg
+//     e.g.  Items/Plain Tea Cake.jpg   (or .jpeg)
+//           Items/Almond Cake.jpg      (or .jpeg)
+//           Items/Brownie Sundae.jpg   (or .jpeg)
 //  3. Save and refresh — photos appear automatically!
-//
-//  Tip: .jpg, .jpeg, .png and .webp all work fine.
-//  If an image is missing, a soft placeholder shows instead.
 // ════════════════════════════════════════════════
 const menuItems = [
   // CAKES
@@ -454,23 +447,12 @@ const menuItems = [
 
 const categories = [
   { id:'all',      label:'All' },
-  { id:'cakes',    label:'🎂 Cakes' },
-  { id:'desserts', label:'🍨 Desserts' },
-  { id:'cupcakes', label:'🧁 Cupcakes & Muffins' },
-  { id:'savoury',  label:'🍕 Savoury' },
-  { id:'specials', label:'⭐ Specials' },
+  { id:'cakes',    label:'Cakes' },
+  { id:'desserts', label:'Desserts' },
+  { id:'cupcakes', label:'Cupcakes & Muffins' },
+  { id:'savoury',  label:'Savoury' },
+  { id:'specials', label:'Specials' },
 ];
-
-// Fallback shown when no photo is found
-const FALLBACK_SVG = `<svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect x="8" y="30" width="48" height="26" rx="4" stroke="#B07080" stroke-width="2.5" fill="#FDE8E0"/>
-  <rect x="14" y="22" width="36" height="10" rx="3" stroke="#B07080" stroke-width="2" fill="#F5D0C8"/>
-  <path d="M22 22 Q22 14 32 14 Q42 14 42 22" stroke="#B07080" stroke-width="2" fill="none"/>
-  <circle cx="32" cy="13" r="3" fill="#B05070"/>
-  <line x1="20" y1="38" x2="20" y2="50" stroke="#B07080" stroke-width="1.5"/>
-  <line x1="32" y1="38" x2="32" y2="50" stroke="#B07080" stroke-width="1.5"/>
-  <line x1="44" y1="38" x2="44" y2="50" stroke="#B07080" stroke-width="1.5"/>
-</svg>`;
 
 let cart = {}, orderData = {}, currentCat = 'all';
 
@@ -498,11 +480,7 @@ function renderMenu(cat) {
     card.innerHTML = `
       <div class="menu-thumb">
         <img src="Items/${item.name}.jpg" alt="${item.name}"
-          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="menu-thumb-fallback" style="display:none">
-          ${FALLBACK_SVG}
-          <span>Photo coming soon</span>
-        </div>
+          onerror="this.onerror=null;this.src='Items/${item.name}.jpeg'">
       </div>
       <div class="menu-card-body">
         <div class="menu-name">${item.name}</div>
@@ -549,7 +527,7 @@ function cartTotal() {
 function renderCartItems() {
   const el = document.getElementById('cart-items-list');
   const keys = Object.keys(cart);
-  if (!keys.length) { el.innerHTML='<div class="cart-empty">🧁 Your cart is empty.<br>Add some items from the menu!</div>'; document.getElementById('cart-total-display').textContent='Rs 0'; return; }
+  if (!keys.length) { el.innerHTML='<div class="cart-empty">Your cart is empty.<br>Add some items from the menu!</div>'; document.getElementById('cart-total-display').textContent='Rs 0'; return; }
   el.innerHTML = '';
   keys.forEach(name => {
     const item = menuItems.find(i => i.name===name); if (!item) return;
@@ -557,7 +535,7 @@ function renderCartItems() {
     const div = document.createElement('div'); div.className='cart-item';
     div.innerHTML = `
       <div class="cart-item-thumb">
-        <img src="Items/${name}.jpg" alt="${name}" onerror="this.parentElement.innerHTML='<span class=cart-item-thumb-fallback>🧁</span>'">
+        <img src="Items/${name}.jpg" alt="${name}" onerror="this.onerror=null;this.src='Items/${name}.jpeg'">
       </div>
       <div class="cart-item-info">
         <div class="cart-item-name">${name}</div>
