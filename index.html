@@ -255,7 +255,7 @@
 </nav>
 
 <div class="delivery-bar">
-  🚴 <strong>Free delivery within 3 km</strong> &nbsp;·&nbsp; <span>Delivery charges apply beyond 3 km — ask us on WhatsApp</span>
+  🚴 <span>Delivery charges apply ask us on WhatsApp</span>
 </div>
 
 <section class="hero">
@@ -313,7 +313,7 @@
   <div class="cart-items" id="cart-items-list"></div>
   <div class="cart-footer">
     <div class="cart-total-row"><span>Subtotal</span><span id="cart-total-display">Rs 0</span></div>
-    <div class="cart-delivery-note">🚴 Free delivery within 3 km · charges apply beyond 3 km</div>
+    <div class="cart-delivery-note">🚴 Free delivery within 3 km · charges apply</div>
     <button class="checkout-btn" id="checkout-btn" onclick="openCheckout()" disabled>Checkout →</button>
   </div>
 </div>
@@ -335,7 +335,7 @@
       <input type="text" id="c-address" placeholder="e.g. House 5, Street 3, Saddar, Rawalpindi">
     </div>
     <div class="delivery-info-box">
-      🚴 <strong>Delivery Policy:</strong> Free within 3 km of Saddar, Rawalpindi. Charges beyond 3 km will be confirmed on WhatsApp.
+      🚴 <strong>Delivery Policy:</strong> Free within 3 km of Saddar, Rawalpindi. Charges will be confirmed on WhatsApp.
     </div>
     <div class="modal-field"><label>Special requests (optional)</label>
       <textarea id="c-note" placeholder="Nut-free, custom cake message, delivery date/time..."></textarea>
@@ -626,7 +626,7 @@ function showReceipt() {
   });
   document.getElementById('r-subtotal').textContent='Rs '+subtotal.toLocaleString();
   const drow=document.getElementById('r-delivery-row'),dnote=document.getElementById('r-delivery-note');
-  if(orderData.type==='delivery'){drow.style.display='flex';document.getElementById('r-delivery-cost').textContent='TBD';dnote.textContent='🚴 Free within 3 km · charges beyond 3 km confirmed on WhatsApp';dnote.style.display='block';}
+  if(orderData.type==='delivery'){drow.style.display='flex';document.getElementById('r-delivery-cost').textContent='TBD';dnote.textContent='🚴 charges confirmed on WhatsApp';dnote.style.display='block';}
   else{drow.style.display='none';dnote.style.display='none';}
   document.getElementById('r-total').textContent=orderData.type==='delivery'?'Rs '+subtotal.toLocaleString()+' + delivery':'Rs '+subtotal.toLocaleString();
   if(orderData.note){document.getElementById('r-note-section').style.display='block';document.getElementById('r-note').textContent=orderData.note;}
@@ -644,7 +644,7 @@ function sendToWhatsApp() {
   let subtotal=0;
   Object.keys(cart).forEach(name=>{const item=menuItems.find(i=>i.name===name);if(!item)return;const sub=item.price*cart[name];subtotal+=sub;msg+=`• ${name} × ${cart[name]} = Rs ${sub.toLocaleString()}\n`;});
   msg+=`\n💰 *Subtotal: Rs ${subtotal.toLocaleString()}*`;
-  if(orderData.type==='delivery') msg+=`\n🚴 *Delivery:* Free within 3 km · charges confirmed for farther`;
+  if(orderData.type==='delivery') msg+=`\n🚴 *Delivery:* F  charges confirmed for farther`;
   msg+=`\n💳 *Total Payable: Rs ${subtotal.toLocaleString()}${orderData.type==='delivery'?' + delivery charges (if applicable)':''}*`;
   if(orderData.note) msg+=`\n\n📝 *Special requests:* ${orderData.note}`;
   msg+=`\n\n🕐 _Ordered at: ${now}_`;
