@@ -30,7 +30,7 @@
       pointer-events:none;
       z-index:0;
     }
-    .nav,.delivery-bar,.hero,.section,.story,.location,.footer{position:relative;z-index:1;}
+    .nav,.hero,.section,.story,.location,.footer{position:relative;z-index:1;}
 
     /* ── NAV ── */
     .nav{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;background:var(--cream);border-bottom:2px solid var(--card-border);position:sticky;top:0;z-index:100;}
@@ -44,7 +44,7 @@
       ║         object-fit:contain;">               ║
       ╚══════════════════════════════════════════════╝
     */
-    .logo-img-placeholder{width:52px;height:52px;border-radius:12px;background:#F0C8C0;border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--mid-brown);text-align:center;line-height:1.3;padding:4px;flex-shrink:0;}
+    
     .logo-text{display:flex;flex-direction:column;}
     .logo-name{font-size:17px;font-weight:bold;color:var(--dk-brown);letter-spacing:.3px;}
     .logo-name span{color:var(--pink);}
@@ -73,9 +73,7 @@
     @keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.18)}70%{transform:scale(0.94)}100%{transform:scale(1)}}
     .pop-anim{animation:pop .35s ease forwards;}
 
-    /* ── DELIVERY BAR ── */
-    .delivery-bar{background:#FFF3CD;border-top:2px solid #E6C87A;border-bottom:2px solid #E6C87A;padding:10px 20px;text-align:center;font-size:13px;color:#7A5B00;font-weight:600;}
-    .delivery-bar span{color:var(--pink);}
+    
 
     /* ── MENU ── */
     .section{padding:40px 32px;background:#FFF9F6;}
@@ -151,7 +149,7 @@
     .cart-empty{text-align:center;padding:48px 20px;color:var(--mid-brown);font-size:14px;line-height:1.7;}
     .cart-footer{padding:18px 22px;border-top:2px solid var(--card-border);background:#FFF9F6;}
     .cart-total-row{display:flex;justify-content:space-between;font-size:16px;font-weight:bold;color:var(--dk-brown);margin-bottom:4px;}
-    .cart-delivery-note{font-size:11px;color:var(--mid-brown);margin-bottom:12px;line-height:1.5;}
+    
     .checkout-btn{width:100%;background:var(--pink);color:#fff;border:none;padding:13px;border-radius:30px;font-size:15px;cursor:pointer;font-weight:700;transition:background .15s,transform .15s;}
     .checkout-btn:hover{background:var(--pink-dark);}
     .checkout-btn:active{transform:scale(0.97);}
@@ -167,7 +165,7 @@
     .modal-field input,.modal-field textarea,.modal-field select{font-size:14px;border:2px solid var(--card-border);border-radius:10px;padding:10px 12px;background:var(--cream);color:var(--dk-brown);outline:none;font-family:inherit;transition:border-color .15s;}
     .modal-field input:focus,.modal-field textarea:focus,.modal-field select:focus{border-color:var(--pink);}
     .modal-field textarea{min-height:70px;resize:vertical;}
-    .delivery-info-box{background:#FFF3CD;border:1.5px solid #E6C87A;border-radius:10px;padding:10px 14px;font-size:12px;color:#7A5B00;line-height:1.6;margin-bottom:14px;}
+    
     .modal-btns{display:flex;gap:12px;margin-top:18px;}
     .modal-cancel{flex:1;background:transparent;color:var(--brown);border:2px solid var(--card-border);padding:11px;border-radius:24px;font-size:14px;cursor:pointer;font-weight:600;transition:background .15s;}
     .modal-cancel:hover{background:var(--blush);}
@@ -177,7 +175,7 @@
     /* ── RECEIPT ── */
     .receipt{background:#FFF9F6;border:2px solid var(--card-border);border-radius:20px;width:440px;max-width:100%;max-height:90vh;overflow-y:auto;padding:28px;}
     .receipt-header{text-align:center;margin-bottom:18px;border-bottom:2px dashed var(--card-border);padding-bottom:16px;}
-    .receipt-logo-img{width:56px;height:56px;border-radius:12px;background:#F0C8C0;border:2px dashed var(--card-border);display:flex;align-items:center;justify-content:center;font-size:9px;color:var(--mid-brown);text-align:center;margin:0 auto 8px;line-height:1.3;}
+    
     .receipt-logo{font-size:20px;font-weight:bold;color:var(--dk-brown);}
     .receipt-logo span{color:var(--pink);}
     .receipt-tagline{font-size:11px;color:var(--mid-brown);letter-spacing:.4px;text-transform:uppercase;margin-top:2px;}
@@ -190,8 +188,8 @@
     .receipt-row-name{flex:1;}
     .receipt-row-price{flex-shrink:0;font-weight:600;}
     .receipt-subtotal-row{display:flex;justify-content:space-between;font-size:14px;color:var(--dk-brown);padding:6px 0;margin-top:8px;border-top:1px solid var(--card-border);}
-    .receipt-delivery-row{display:flex;justify-content:space-between;font-size:13px;color:var(--mid-brown);padding:4px 0;}
-    .receipt-delivery-note{font-size:11px;color:var(--mid-brown);margin-top:4px;line-height:1.5;font-style:italic;}
+    
+    
     .receipt-total-row{display:flex;justify-content:space-between;font-size:18px;font-weight:bold;color:var(--dk-brown);margin-top:10px;padding-top:12px;border-top:2px solid var(--card-border);}
     .receipt-footer{text-align:center;font-size:13px;color:var(--mid-brown);margin-top:16px;padding-top:14px;border-top:2px dashed var(--card-border);line-height:1.6;}
     .receipt-btns{display:flex;gap:12px;margin-top:18px;}
@@ -222,10 +220,7 @@
 ════════════════════════════════════════════════════ -->
 <nav class="nav">
   <div class="logo-area">
-    <!-- ▼▼▼ REPLACE WITH YOUR LOGO ▼▼▼
     <img src="your-logo.png" style="width:52px;height:52px;border-radius:12px;object-fit:contain;">
-    ▲▲▲ DELETE THE PLACEHOLDER DIV BELOW WHEN YOU ADD YOUR LOGO ▲▲▲ -->
-    <div class="logo-img-placeholder">Your<br>Logo</div>
     <div class="logo-text">
       <span class="logo-name"><span>Crunchic</span> Baking Lab</span>
       <span class="logo-tagline">Freshly Baked with Love &amp; Crunch</span>
@@ -242,14 +237,6 @@
     </button>
   </div>
 </nav>
-
-<!-- ═══════════════════════════════════════════════════
-  DELIVERY BAR
-════════════════════════════════════════════════════ -->
-<div class="delivery-bar">
-  🚴 <strong>Free delivery within 3 km</strong> &nbsp;·&nbsp;
-  <span>Delivery charges apply beyond 3 km — ask us on WhatsApp</span>
-</div>
 
 <!-- ═══════════════════════════════════════════════════
   HERO
@@ -297,7 +284,6 @@
   <div class="location-card">
     <div class="loc-row">📍 <span>Saddar, Rawalpindi, Punjab — walk-ins welcome</span></div>
     <div class="loc-row">🕐 <span>Mon–Sat: 7:30 am – 8:00 pm &nbsp;|&nbsp; Sun: 8:00 am – 2:00 pm</span></div>
-    <div class="loc-row">🚴 <span>Free delivery within 3 km · charges apply beyond</span></div>
     <div class="loc-row">💬 <span>+92 337 8637801</span></div>
     <div class="loc-row">✉️ <span>hello@crunchicbakinglab.pk</span></div>
   </div>
@@ -326,7 +312,6 @@
       <span>Subtotal</span>
       <span id="cart-total-display">Rs 0</span>
     </div>
-    <div class="cart-delivery-note">🚴 Free delivery within 3 km · charges apply beyond 3 km</div>
     <button class="checkout-btn" id="checkout-btn" onclick="openCheckout()" disabled>Checkout →</button>
   </div>
 </div>
@@ -354,10 +339,6 @@
       <label>Delivery address *</label>
       <input type="text" id="c-address" placeholder="e.g. House 5, Street 3, Saddar, Rawalpindi">
     </div>
-    <div class="delivery-info-box">
-      🚴 <strong>Delivery Policy:</strong> Free within 3 km of our bakery in Saddar, Rawalpindi.
-      Delivery charges apply beyond 3 km — our team will confirm the exact charge on WhatsApp after you place the order.
-    </div>
     <div class="modal-field">
       <label>Special requests (optional)</label>
       <textarea id="c-note" placeholder="Nut-free, custom message on cake, delivery date/time..."></textarea>
@@ -373,10 +354,7 @@
 <div class="modal-overlay" id="receipt-modal">
   <div class="receipt">
     <div class="receipt-header">
-      <!-- ▼▼▼ REPLACE WITH YOUR LOGO ▼▼▼
       <img src="your-logo.png" style="width:56px;height:56px;border-radius:12px;object-fit:contain;margin:0 auto 8px;display:block;">
-      ▲▲▲ DELETE THE PLACEHOLDER DIV BELOW ▲▲▲ -->
-      <div class="receipt-logo-img">Your<br>Logo</div>
       <div class="receipt-logo"><span>Crunchic</span> Baking Lab</div>
       <div class="receipt-tagline">Freshly Baked with Love &amp; Crunch</div>
       <div class="receipt-addr">Saddar, Rawalpindi · hello@crunchicbakinglab.pk</div>
@@ -403,10 +381,6 @@
       <div class="receipt-subtotal-row">
         <span>Subtotal</span><span id="r-subtotal"></span>
       </div>
-      <div class="receipt-delivery-row" id="r-delivery-row">
-        <span>Delivery</span><span id="r-delivery-cost"></span>
-      </div>
-      <div class="receipt-delivery-note" id="r-delivery-note"></div>
     </div>
     <div class="receipt-section" id="r-note-section" style="display:none;">
       <div class="receipt-label">Special requests</div>
